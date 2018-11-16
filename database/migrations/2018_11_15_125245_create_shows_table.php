@@ -16,6 +16,8 @@ class CreateShowsTable extends Migration
         Schema::create('shows', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('name')->nullable();
+
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')
                 ->on('events')->onDelete('cascade');
