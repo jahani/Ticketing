@@ -22,6 +22,8 @@ class CreateSeatShowTable extends Migration
             $table->foreign('show_id')->references('id')
                 ->on('shows')->onDelete('cascade');
             
+            $table->primary(['seat_id', 'show_id']);
+            
             $table->enum('status', ['held', 'reserved', 'booked']);
             
             $table->integer('user_id')->unsigned()->nullable();

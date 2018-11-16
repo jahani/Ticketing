@@ -22,6 +22,8 @@ class CreateSectionShowTable extends Migration
             $table->foreign('show_id')->references('id')
                 ->on('shows')->onDelete('cascade');
             
+            $table->primary(['section_id', 'show_id']);
+            
             $table->integer('price');
 
             $table->timestamps();
