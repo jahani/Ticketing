@@ -16,12 +16,11 @@ class CreateStagesTable extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->unsignedInteger('venue_id');
+            $table->timestamps();
 
-            $table->integer('venue_id')->unsigned();
             $table->foreign('venue_id')->references('id')
                 ->on('venues')->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

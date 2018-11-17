@@ -14,19 +14,16 @@ class CreateSectionShowTable extends Migration
     public function up()
     {
         Schema::create('section_show', function (Blueprint $table) {
-            $table->integer('section_id')->unsigned();
+            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('show_id');
+            $table->integer('price');
+            $table->timestamps();
+
+            $table->primary(['section_id', 'show_id']);
             $table->foreign('section_id')->references('id')
                 ->on('sections')->onDelete('cascade');
-            
-            $table->integer('show_id')->unsigned();
             $table->foreign('show_id')->references('id')
                 ->on('shows')->onDelete('cascade');
-            
-            $table->primary(['section_id', 'show_id']);
-            
-            $table->integer('price');
-
-            $table->timestamps();
         });
     }
 

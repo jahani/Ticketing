@@ -14,23 +14,19 @@ class CreateSeatShowTable extends Migration
     public function up()
     {
         Schema::create('seat_show', function (Blueprint $table) {
-            $table->integer('seat_id')->unsigned();
+            $table->unsignedInteger('seat_id');
+            $table->unsignedInteger('show_id');
+            $table->enum('status', ['held', 'reserved', 'booked']);
+            $table->unsignedInteger('user_id')->nullable();
+            $table->timestamps();
+
             $table->foreign('seat_id')->references('id')
                 ->on('seats')->onDelete('cascade');
-            
-            $table->integer('show_id')->unsigned();
             $table->foreign('show_id')->references('id')
                 ->on('shows')->onDelete('cascade');
-            
-            $table->primary(['seat_id', 'show_id']);
-            
-            $table->enum('status', ['held', 'reserved', 'booked']);
-            
-            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
-            
-            $table->timestamps();
+            $table->primary(['seat_id', 'show_id']);
         });
     }
 

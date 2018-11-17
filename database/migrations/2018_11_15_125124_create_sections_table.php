@@ -16,12 +16,11 @@ class CreateSectionsTable extends Migration
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->unsignedInteger('stage_id');
+            $table->timestamps();
 
-            $table->integer('stage_id')->unsigned();
             $table->foreign('stage_id')->references('id')
                 ->on('stages')->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 
