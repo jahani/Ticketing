@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
+use App\{Event};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Logged user data
 
 class EventController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
+        $events = Event::where('user_id', Auth::user()->id)->get();
+        return view('events.index')->with(compact('events'));
     }
 
     /**
@@ -24,7 +30,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        // Handle enums
+        // $statuses = Event::getPossibleEnumValues('status');
+        $statuses = ['draft', 'published'];
+        return view('events.create')->with(compact('statuses'));
     }
 
     /**
@@ -35,7 +44,26 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO handle $errors
+        $statuses = ['draft', 'published'];
+        $this->validate(request(), [
+            'name' => 'required|min:3|max:100',
+            'status' => 'in:' . implode(',', $statuses),
+        ]);
+
+        $event = new Event();
+        $event->name = request('name');
+        $event->status = request('status');
+        $event->user_id = Auth::user()->id;
+        $event->save();
+
+        // Event::create([
+        //     'name' => request('name'),
+        //     'status' => request('status'),
+        //     'user_id' => Auth::user()->id,
+        // ]);
+
+        return redirect()->route('events.index');
     }
 
     /**
@@ -46,7 +74,8 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load('shows');
+        return view('events.show')->with(compact('event'));
     }
 
     /**
