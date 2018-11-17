@@ -11,9 +11,9 @@ class Section extends Model
         return $this->belongsTo(Stage::class);
     }
 
-    public function rows()
+    public function seats()
     {
-        return $this->hasMany(Row::class);
+        return $this->hasMany(Seat::class);
     }
 
     public function shows()

@@ -16,11 +16,16 @@ class CreateSeatsTable extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('row_id')->unsigned();
-            $table->foreign('row_id')->references('id')
-                ->on('rows')->onDelete('cascade');
+            $table->unsignedTinyInteger('row_number');
+            $table->unsignedTinyInteger('seat_number');
+
+            $table->integer('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')
+                ->on('sections')->onDelete('cascade');
 
             $table->timestamps();
+
+            $table->unique(['row_number', 'seat_number', 'section_id']);
         });
     }
 

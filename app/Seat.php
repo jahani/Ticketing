@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Seat extends Model
 {
-    public function row()
+    public function section()
     {
-        return $this->belongsTo(Row::class);
+        return $this->belongsTo(Section::class);
     }
 
     public function shows()
