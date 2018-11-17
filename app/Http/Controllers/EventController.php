@@ -47,21 +47,14 @@ class EventController extends Controller
         // TODO handle $errors
         $statuses = ['draft', 'published'];
         $this->validate(request(), [
-            'name' => 'required|min:3|max:100',
+            'name' => 'required|min:3|max:180',
             'status' => 'in:' . implode(',', $statuses),
         ]);
 
         $event = new Event();
-        $event->name = request('name');
-        $event->status = request('status');
-        $event->user_id = Auth::user()->id;
+        $event->fill($request->all());
+        $event->user_id = Auth::id();
         $event->save();
-
-        // Event::create([
-        //     'name' => request('name'),
-        //     'status' => request('status'),
-        //     'user_id' => Auth::user()->id,
-        // ]);
 
         return redirect()->route('events.index');
     }
