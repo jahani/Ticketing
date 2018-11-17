@@ -32,7 +32,7 @@
                     @else
                         <div>{{ __('There is no show here!') }}</div>
                     @endif
-                    <div>{!! sprintf(__('Why not <a href="%s">create a new one</a>?'), "route('shows.create')") !!}</div>
+                    <div>{!! sprintf(__('Why not <a href="%s">create a new one</a>?'), route('events.shows.create', $event)) !!}</div>
                 </div>
             </div>
         </div>

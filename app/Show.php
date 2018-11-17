@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Show extends Model
 {
+    protected $fillable = ['name'];
+
     public function event()
     {
         return $this->belongsTo(Event::class);

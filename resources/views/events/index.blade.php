@@ -21,7 +21,7 @@
                         @foreach ($events as $index => $event)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
-                                <td><a href="{{ route('events.show', ['id' => $event->id]) }}">{{ $event->name }}</a></td>
+                                <td><a href="{{ route('events.show', $event) }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->status }}</td>
                             </tr>
                         @endforeach
