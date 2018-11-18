@@ -30,7 +30,7 @@
                     @else
                         <div>{{ __('There is no event here!') }}</div>
                     @endif
-                    <div>{!! sprintf(__('Why not <a href="%s">create a new one</a>?'), route('events.create')) !!}</div>
+                    <div>{!! sprintf(__('Why not <a href="%s">create a new event</a>?'), route('events.create')) !!}</div>
                 </div>
             </div>
         </div>

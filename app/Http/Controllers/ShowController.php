@@ -49,7 +49,8 @@ class ShowController extends Controller
      */
     public function show(Show $show)
     {
-        //
+        // Check authentication
+        return $show;
     }
 
     /**

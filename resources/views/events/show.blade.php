@@ -24,7 +24,7 @@
                         @foreach ($event->shows as $index => $show)
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
-                                <td><a href="#">{{ $show->name }}</a></td>
+                                <td><a href="{{ route('shows.show', $show) }}">{{ $show->name }}</a></td>
                             </tr>
                         @endforeach
                             </tbody>
@@ -32,7 +32,7 @@
                     @else
                         <div>{{ __('There is no show here!') }}</div>
                     @endif
-                    <div>{!! sprintf(__('Why not <a href="%s">create a new one</a>?'), route('events.shows.create', $event)) !!}</div>
+                    <div>{!! sprintf(__('Why not <a href="%s">create a new show</a>?'), route('events.shows.create', $event)) !!}</div>
                 </div>
             </div>
         </div>

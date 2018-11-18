@@ -22,5 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resources([
     'events' => 'EventController',
-    'events.shows' => 'ShowController',
 ]);
+
+Route::resource('events.shows', 'ShowController')
+    ->only(['index', 'create', 'store']);
+
+Route::resource('shows', 'ShowController')
+    ->only(['show', 'edit', 'update', 'destroy']);
