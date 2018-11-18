@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\{Event};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
+use App\Enums\EventStatusType;
 
 class EventController extends Controller
 {
@@ -32,7 +33,7 @@ class EventController extends Controller
     {
         // Handle enums
         // $statuses = Event::getPossibleEnumValues('status');
-        $statuses = ['draft', 'published'];
+        $statuses = EventStatusType::toSelectArray();
         return view('events.create')->with(compact('statuses'));
     }
 
@@ -45,10 +46,9 @@ class EventController extends Controller
     public function store(Request $request)
     {
         // TODO handle $errors
-        $statuses = ['draft', 'published'];
-        $this->validate(request(), [
+        $this->validate($request, [
             'name' => 'required|min:3|max:180',
-            'status' => 'in:' . implode(',', $statuses),
+            'status' => 'enum_key:' . EventStatusType::class,
         ]);
 
         $event = new Event();
