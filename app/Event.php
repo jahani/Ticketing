@@ -28,4 +28,14 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function isPublished()
+    {
+        return $this->status_code == EventStatusType::Published;
+    }
+    
+    public function scopePublished($query)
+    {
+        return $query->where('status_code', EventStatusType::Published);
+    }
 }

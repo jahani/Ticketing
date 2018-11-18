@@ -10,7 +10,7 @@ use App\Enums\EventStatusType;
 class EventController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth');
+        $this->authorizeResource(Event::class);
     }
 
     /**
@@ -20,8 +20,11 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Auth::user()->events;
-        // $events = Event::where('user_id', Auth::user()->id)->get();
+        if (Auth::guest()) {
+            $events = Event::published()->get();
+        } else {
+            $events = Auth::user()->events;
+        }
         return view('events.index')->with(compact('events'));
     }
 
