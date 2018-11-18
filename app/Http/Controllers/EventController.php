@@ -20,7 +20,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::where('user_id', Auth::user()->id)->get();
+        $events = Auth::user()->events;
+        // $events = Event::where('user_id', Auth::user()->id)->get();
         return view('events.index')->with(compact('events'));
     }
 
@@ -31,8 +32,6 @@ class EventController extends Controller
      */
     public function create()
     {
-        // Handle enums
-        // $statuses = Event::getPossibleEnumValues('status');
         $statuses = EventStatusType::toSelectArray();
         return view('events.create')->with(compact('statuses'));
     }
@@ -51,10 +50,12 @@ class EventController extends Controller
             'status' => 'enum_key:' . EventStatusType::class,
         ]);
 
-        $event = new Event();
-        $event->fill($request->all());
-        $event->user_id = Auth::id();
-        $event->save();
+        Auth::user()->events()->create($request->all());
+
+        // $event = new Event();
+        // $event->fill($request->all());
+        // $event->user_id = Auth::id();
+        // $event->save();
 
         return redirect()->route('events.index');
     }
