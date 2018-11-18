@@ -13,6 +13,8 @@ class Seat extends Model
 
     public function shows()
     {
-        return $this->belongsToMany(Show::class)->withPivot('user_id')->withTimestamps();
+        return $this->belongsToMany(Show::class)
+            ->withPivot('user_id')->withTimestamps()
+            ->using(SeatShow::class);
     }
 }

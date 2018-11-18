@@ -44,7 +44,7 @@ class EventsTableSeeder extends Seeder
         $show = Show::all()->random();
         $seat = $show->sections->random()->seats->random();
         $user = User::find(1);
-
-        $seat->shows()->attach($show->id, ['user_id' => $user->id]);
+        
+        $seat->shows()->attach($show->id, ['user_id' => $user->id, 'status' => 'Reserved']);
     }
 }
