@@ -14,8 +14,8 @@ class CreateSectionShowTable extends Migration
     public function up()
     {
         Schema::create('section_show', function (Blueprint $table) {
-            $table->unsignedInteger('section_id');
-            $table->unsignedInteger('show_id');
+            $table->unsignedInteger('section_id')->index();
+            $table->unsignedInteger('show_id')->index();
             $table->integer('price');
             $table->timestamps();
 

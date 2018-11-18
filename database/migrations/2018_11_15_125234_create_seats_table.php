@@ -17,7 +17,7 @@ class CreateSeatsTable extends Migration
             $table->increments('id');
             $table->unsignedTinyInteger('row_number');
             $table->unsignedTinyInteger('seat_number');
-            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('section_id')->index();
             $table->timestamps();
             
             $table->foreign('section_id')->references('id')

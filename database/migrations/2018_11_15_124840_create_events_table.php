@@ -19,9 +19,9 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->unsignedTinyInteger('status_code')->default(EventStatusType::Draft);
 
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')->references('id')
-                ->on('users')->onDelete('cascade');
+                ->on('users')->onDelete('restrict');
 
             $table->timestamps();
         });
