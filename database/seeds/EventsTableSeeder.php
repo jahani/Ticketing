@@ -22,8 +22,14 @@ class EventsTableSeeder extends Seeder
         ]);
 
         // Create an Stage
+        factory(Stage::class)->create();
+        
         $stage = factory(Stage::class)->create();
-        $sections = factory(Section::class, 4)->create([
+        factory(Stage::class, mt_rand(2,6))->create([
+            'venue_id' => $stage->venue->id,
+        ]);
+
+        $sections = factory(Section::class, mt_rand(3,5))->create([
             'stage_id' => $stage->id,
         ]);
         foreach ($sections as $section) {
