@@ -20,4 +20,40 @@ class Section extends Model
     {
         return $this->belongsToMany(Show::class)->withPivot('price')->withTimestamps();
     }
+
+    public function getGroupedSeats()
+    {
+        $allSeats = $this->seats;
+
+        $seats = array();
+        foreach ($allSeats as $seat) {
+            $seats[$seat->row_number][$seat->seat_number] = $seat;
+        }
+        
+        ksort($seats);
+        foreach ($seats as $key => $seatsRow) {
+            ksort($seatsRow);
+            $seats[$key] = array_values($seatsRow);
+        }
+
+        $seats = array_values($seats);
+
+        
+
+        
+        return $seats;
+    }
+    
+    public function getSortedSeats()
+    {
+        $allSeats = $this->seats;
+
+        // Sort seats but not group them
+        $seats = $allSeats->all();
+        $row_number  = array_column($seats, 'row_number');
+        $seat_number = array_column($seats, 'seat_number');
+        array_multisort($row_number, SORT_ASC, $seat_number, SORT_ASC, $seats);
+
+        return $seats;
+    }
 }
