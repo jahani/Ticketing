@@ -17,6 +17,7 @@ class CreateSeatShowTable extends Migration
             $table->unsignedInteger('seat_id')->index();
             $table->unsignedInteger('show_id')->index();
             $table->unsignedTinyInteger('status');
+            $table->string('session_id', 100)->nullable()->index();
             $table->unsignedInteger('user_id')->nullable()->index();
             $table->timestamps();
 
