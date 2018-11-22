@@ -31,6 +31,7 @@ class Show extends Model
     public function sectionSeats(Section $section)
     {
         $sectionSeats = $section->seats;
+        // TODO : Built query is not specific about section_id
         $showSeats = $this->seats->where('section_id', $section->id);
         $seats = $sectionSeats->merge($showSeats);
         return $seats;
