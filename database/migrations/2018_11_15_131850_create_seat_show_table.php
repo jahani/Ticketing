@@ -16,7 +16,7 @@ class CreateSeatShowTable extends Migration
         Schema::create('seat_show', function (Blueprint $table) {
             $table->unsignedInteger('seat_id')->index();
             $table->unsignedInteger('show_id')->index();
-            $table->unsignedTinyInteger('status_code');
+            $table->unsignedTinyInteger('status');
             $table->unsignedInteger('user_id')->nullable()->index();
             $table->timestamps();
 

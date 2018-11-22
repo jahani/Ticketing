@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\{User, Event, Show, Venue, Stage, Section, Row, Seat};
+use App\Enums\SeatBookType;
 
 class EventsTableSeeder extends Seeder
 {
@@ -51,6 +52,6 @@ class EventsTableSeeder extends Seeder
         $seat = $show->sections->random()->seats->random();
         $user = User::find(1);
         
-        $seat->shows()->attach($show->id, ['user_id' => $user->id, 'status' => 'Reserved']);
+        $seat->shows()->attach($show->id, ['user_id' => $user->id, 'status' => SeatBookType::Reserved]);
     }
 }

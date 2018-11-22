@@ -8,13 +8,15 @@ use App\Enums\SeatBookType;
 
 class SeatShow extends Pivot
 {
-    public function setStatusAttribute($value)
-    {
-        $this->attributes['status_code'] = SeatBookType::getValue($value);
-    }
+    // public function setStatusAttribute($value)
+    // {
+    //     $this->attributes['status_code'] = SeatBookType::getValue($value);
+    // }
 
-    public function getStatusAttribute()
-    {
-        return SeatBookType::getKey($this->status_code);
-    }
+    // public function getStatusAttribute()
+    // {
+    //     return SeatBookType::getKey($this->status_code);
+    // }
+
+    
 }
