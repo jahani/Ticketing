@@ -29,3 +29,8 @@ Route::resource('events.shows', 'ShowController')
 
 Route::resource('shows', 'ShowController')
     ->only(['show', 'edit', 'update', 'destroy']);
+
+Route::group(['prefix' => 'reserves'], function() {
+    Route::get('show/{show}/section/{section}', 'ReserveController@show')
+        ->name('reserves.show');
+});
