@@ -56,4 +56,18 @@ class Section extends Model
 
         return $seats;
     }
+
+    public function getDimmentions()
+    {
+        $seats = $this->seats;
+
+        $rows = 0;
+        $cols = 0;
+        foreach ($seats as $seat) {
+            $rows = max($rows, $seat->row_number);
+            $cols = max($cols, $seat->seat_number);
+        }
+
+        return [$rows, $cols];
+    }
 }
