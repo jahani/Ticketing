@@ -22,7 +22,7 @@ class Show extends Model
     public function seats()
     {
         return $this->belongsToMany(Seat::class)
-            ->as('reserve')
+            ->as('reserves')
             ->withPivot('user_id', 'status', 'session_id')
             ->withTimestamps()
             ->using(SeatShow::class);

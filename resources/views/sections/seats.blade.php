@@ -33,9 +33,9 @@ $seats = $show->sectionSeats($section);
             unset($seatClass);
             if ($seat->hasReserveData()) {
                 $seatClass = 'secondary';
-                if ($seat->reserve->isBooked()) $seatClass = 'danger';
-                if ($seat->reserve->isReserved()) $seatClass = 'warning';
-                if ($seat->reserve->isReservedForClient()) $seatClass = 'primary';
+                if ($seat->reserves->isBooked()) $seatClass = 'danger';
+                if ($seat->reserves->isReserved()) $seatClass = 'warning';
+                if ($seat->reserves->isReservedForClient()) $seatClass = 'primary';
             }
         @endphp
         <button style="grid-row: {{$seat->row_number+1}}; grid-column: {{$seat->seat_number+1}};"
