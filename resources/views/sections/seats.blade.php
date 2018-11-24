@@ -31,18 +31,26 @@ $seats = $show->sectionSeats($section);
     @foreach ($seats as $seat)
         @php
             unset($seatClass);
+            unset($href);
             if ($seat->hasReserveData()) {
                 $seatClass = 'secondary';
                 if ($seat->reserves->isBooked()) $seatClass = 'danger';
                 if ($seat->reserves->isReserved()) $seatClass = 'warning';
-                if ($seat->reserves->isReservedForClient()) $seatClass = 'primary';
+                if ($seat->reserves->isReservedForClient()) {
+                    $seatClass = 'primary';
+                    $href = route('reserves.destroy', compact('show', 'seat'));
+                }
+            } else {
+                $href = route('reserves.store', compact('show', 'seat'));
             }
         @endphp
-        <button style="grid-row: {{$seat->row_number+1}}; grid-column: {{$seat->seat_number+1}};"
-            class="seat btn btn-{{ $seatClass ?? 'secondary' }}" id="seat-{{ $seat->id }}"
+        <a style="grid-row: {{$seat->row_number+1}}; grid-column: {{$seat->seat_number+1}};"
+            role="button" class="seat btn btn-{{ $seatClass ?? 'secondary' }}"
+            id="seat-{{ $seat->id }}"
+            @if (!empty($href)) href="{{ $href }}" @endif
             data-toggle="tooltip" data-placement="top" data-html="true"
             title="Row: {{ $seat->row_number }}<br>Seat: {{ $seat->seat_number }}">
             {{ $seat->seat_number }}
-        </button>
+        </a>
     @endforeach
 </div>

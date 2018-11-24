@@ -33,4 +33,8 @@ Route::resource('shows', 'ShowController')
 Route::group(['prefix' => 'reserves'], function() {
     Route::get('show/{show}/section/{section}', 'ReserveController@show')
         ->name('reserves.show');
+    Route::get('show/{show}/seat/{seat}/store', 'ReserveController@store')
+        ->name('reserves.store');
+    Route::get('show/{show}/seat/{seat}/destroy', 'ReserveController@destroy')
+        ->name('reserves.destroy');
 });
