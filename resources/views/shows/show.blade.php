@@ -22,6 +22,7 @@
                                     <th scope="col">Stage</th>
                                     <th scope="col">Venue</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,11 @@
                                 <td>{{ $section->stage->name }}</td>
                                 <td>{{ $section->stage->venue->name }}</td>
                                 <td>{{ $section->pivot->price }}</td>
+                                <td>
+                                    <a href="{{ route('reserves.show', [$show, $section]) }}">
+                                        {!!Form::button("Reserve", "info", "sm")!!}
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                             </tbody>
