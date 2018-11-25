@@ -9,16 +9,6 @@ class Event extends Model
 {
     protected $fillable = ['name', 'status'];
 
-    public function setStatusAttribute($value)
-    {
-        $this->attributes['status_code'] = EventStatusType::getValue($value);
-    }
-
-    public function getStatusAttribute()
-    {
-        return EventStatusType::getKey($this->status_code);
-    }
-
     public function shows()
     {
         return $this->hasMany(Show::class);
@@ -31,11 +21,11 @@ class Event extends Model
 
     public function isPublished()
     {
-        return $this->status_code == EventStatusType::Published;
+        return $this->status == EventStatusType::Published;
     }
     
     public function scopePublished($query)
     {
-        return $query->where('status_code', EventStatusType::Published);
+        return $query->where('status', EventStatusType::Published);
     }
 }

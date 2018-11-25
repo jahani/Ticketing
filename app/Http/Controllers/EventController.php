@@ -6,6 +6,7 @@ use App\{Event};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
 use App\Enums\EventStatusType;
+use BenSampo\Enum\Rules\EnumValue;
 
 class EventController extends Controller
 {
@@ -35,7 +36,6 @@ class EventController extends Controller
      */
     public function create()
     {
-        $statuses = EventStatusType::toSelectArray();
         return view('events.create')->with(compact('statuses'));
     }
 
@@ -50,7 +50,7 @@ class EventController extends Controller
         // TODO handle $errors
         $this->validate($request, [
             'name' => 'required|min:3|max:180',
-            'status' => 'enum_key:' . EventStatusType::class,
+            'status' => [new EnumValue(EventStatusType::class, false)],
         ]);
 
         Auth::user()->events()->create($request->all());

@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedTinyInteger('status_code')->default(EventStatusType::Draft);
+            $table->unsignedTinyInteger('status')->default(EventStatusType::Draft);
 
             $table->unsignedInteger('user_id')->index();
             $table->foreign('user_id')->references('id')

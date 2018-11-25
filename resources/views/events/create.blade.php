@@ -15,7 +15,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" value="{{ old('name') }}" required :autofocus="'autofocus'">
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -29,20 +29,23 @@
                             <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
 
                             <div class="col-md-6">
-                                @foreach ($statuses as $status)
+                                @php
+                                    $statuses = App\Enums\EventStatusType::toSelectArray();
+                                @endphp
+                                @foreach ($statuses as $statusKey => $statusDescription)
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="status"
-                                        id="status-{{ $status }}" value="{{ $status }}"
-                                        @if ($status == reset($statuses )) checked @endif>
-                                        <label class="form-check-label" for="status-{{ $status }}">
-                                            {{ ucfirst($status) }}
+                                        id="status-{{ $statusKey }}" value="{{ $statusKey }}"
+                                        @if (old('status') == $statusKey )) checked @endif>
+                                        <label class="form-check-label" for="status-{{ $statusKey }}">
+                                                {{ $statusDescription }}
                                         </label>
                                     </div>
                                 @endforeach
-                                
+                                        
                                 @if ($errors->has('status'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('status') }}</strong>
+                                    <span class="text-danger" role="alert">
+                                        {{ $errors->first('status') }}
                                     </span>
                                 @endif
                             </div>
