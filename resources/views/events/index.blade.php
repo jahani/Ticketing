@@ -22,7 +22,7 @@
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td><a href="{{ route('events.show', $event) }}">{{ $event->name }}</a></td>
-                                <td>{{ $event->status }}</td>
+                                <td>{{ $event->statusName }}</td>
                             </tr>
                         @endforeach
                             </tbody>

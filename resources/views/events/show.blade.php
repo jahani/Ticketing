@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <h1>{{ $event->name }}</h1>
-                    <div>Status: {{ $event->status }}</div>
+                    <div>Status: {{ $event->statusName }}</div>
 
                     <h2>Shows</h2>
                     @if ($event->shows->count())

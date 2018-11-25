@@ -9,6 +9,11 @@ class Event extends Model
 {
     protected $fillable = ['name', 'status'];
 
+    public function getStatusNameAttribute()
+    {
+        return EventStatusType::getDescription($this->status);
+    }
+
     public function shows()
     {
         return $this->hasMany(Show::class);
