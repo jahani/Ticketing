@@ -9,7 +9,8 @@
         "bensampo/laravel-enum": "^1.16",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "netojose/laravel-bootstrap-4-forms": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
