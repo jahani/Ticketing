@@ -28,6 +28,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function isAdmin()
+    {
+        // TODO : use a better approach, maybe a field
+        return $this->id == 1;
+    }
+
     public function events()
     {
         return $this->hasMany(Event::class);
