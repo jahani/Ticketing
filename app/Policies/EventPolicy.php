@@ -45,7 +45,8 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        //
+        // TODO
+        return true;
     }
 
     /**

@@ -30,7 +30,9 @@
                     @else
                         <div>{{ __('There is no event here!') }}</div>
                     @endif
-                    <div>{!! sprintf(__('Why not <a href="%s">create a new event</a>?'), route('events.create')) !!}</div>
+                    @can('create', App\Event::class)
+                        <div>{!! sprintf(__('Why not <a href="%s">create a new event</a>?'), route('events.create')) !!}</div>
+                    @endcan
                 </div>
             </div>
         </div>

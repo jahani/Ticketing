@@ -32,7 +32,9 @@
                     @else
                         <div>{{ __('There is no show here!') }}</div>
                     @endif
-                    <div>{!! sprintf(__('Why not <a href="%s">create a new show</a>?'), route('events.shows.create', $event)) !!}</div>
+                    @can('update', $event)
+                        <div>{!! sprintf(__('Why not <a href="%s">create a new show</a>?'), route('events.shows.create', $event)) !!}</div>
+                    @endcan
                 </div>
             </div>
         </div>
