@@ -40,7 +40,7 @@
                         <div>{{ __('There is no section here!') }}</div>
                     @endif
                     {{-- @can('update', $show) --}}
-                        {{-- <div>{!! sprintf(__('Why not <a href="%s">add a new section for this show</a>?'), route('')) !!}</div> --}}
+                        @include('shows.addSectionForm')
                     {{-- @endcan --}}
                 </div>
             </div>

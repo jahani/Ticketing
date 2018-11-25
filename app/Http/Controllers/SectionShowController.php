@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\{Show, Event, Section};
+use App\Section;
+use App\Show;
 use Illuminate\Http\Request;
 
-class ShowController extends Controller
+class SectionShowController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Show  $show
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Show $show)
     {
         //
     }
@@ -20,48 +22,54 @@ class ShowController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Show  $show
      * @return \Illuminate\Http\Response
      */
-    public function create(Event $event)
+    public function create(Show $show)
     {
-        return view('shows.create')->with(compact('event'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Show  $show
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Event $event)
+    public function store(Request $request, Show $show)
     {
-        // TODO: Validate
-        $event->shows()->create($request->all());
+        // TODO : if user own the show
 
-        return redirect()->route('events.show', $event);
+        $this->validate($request, [
+            'section' => 'required|exists:sections,id',
+            'price' => 'required|numeric|min:1|digits_between:1,9',
+        ]);
+        
+        $show->sections()->attach(request('section'), ['price' => request('price')]);
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Show  $show
+     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function show(Show $show)
+    public function show(Show $show, Section $section)
     {
-        // Check authentication
-        $show->load(['sections', 'sections.stage', 'sections.stage.venue']);
-        $sections = Section::with(['stage', 'stage.venue'])->get();
-        return view('shows.show', compact('show', 'sections'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Show  $show
+     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function edit(Show $show)
+    public function edit(Show $show, Section $section)
     {
         //
     }
@@ -71,9 +79,10 @@ class ShowController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Show  $show
+     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Show $show)
+    public function update(Request $request, Show $show, Section $section)
     {
         //
     }
@@ -82,9 +91,10 @@ class ShowController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Show  $show
+     * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Show $show)
+    public function destroy(Show $show, Section $section)
     {
         //
     }

@@ -38,3 +38,8 @@ Route::group(['prefix' => 'reserves'], function() {
     Route::get('show/{show}/seat/{seat}/destroy', 'ReserveController@destroy')
         ->name('reserves.destroy');
 });
+
+Route::group(['prefix' => 'sectionshows'], function() {
+    Route::post('show/{show}', 'SectionShowController@store')
+        ->name('sectionshows.shows.store');
+});
