@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
 use App\Enums\EventStatusType;
 use BenSampo\Enum\Rules\EnumValue;
+use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -36,7 +37,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('events.create')->with(compact('statuses'));
+        return view('events.create');
     }
 
     /**
@@ -47,18 +48,19 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO handle $errors
+        
         $this->validate($request, [
             'name' => 'required|min:3|max:180',
+            'image' => 'mimes:png,gif,jpeg,jpg|max:1024',
             'status' => [new EnumValue(EventStatusType::class, false)],
         ]);
-
-        Auth::user()->events()->create($request->all());
-
-        // $event = new Event();
-        // $event->fill($request->all());
-        // $event->user_id = Auth::id();
-        // $event->save();
+        
+        $event = new Event();
+        $event->fill($request->except(['image']));
+        if ($request->hasFile('image')) {
+            $event->image = $request->file('image')->store('events');
+        }
+        Auth::user()->events()->save($event);
 
         return redirect()->route('events.index');
     }

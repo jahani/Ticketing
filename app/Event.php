@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Enums\EventStatusType;
+use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
 {
@@ -32,5 +33,10 @@ class Event extends Model
     public function scopePublished($query)
     {
         return $query->where('status', EventStatusType::Published);
+    }
+
+    public function getImageURL()
+    {
+        return isset($this->image) ? url(Storage::url($this->image)) : asset('img/default.png');
     }
 }

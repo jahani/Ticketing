@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('image')->nullable();
             $table->unsignedTinyInteger('status')->default(EventStatusType::Draft);
 
             $table->unsignedInteger('user_id')->index();
