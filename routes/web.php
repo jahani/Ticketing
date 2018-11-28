@@ -20,6 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('events/mine', 'EventController@mine')
+    ->name('events.mine')->middleware('auth');
+
 Route::resources([
     'events' => 'EventController',
 ]);

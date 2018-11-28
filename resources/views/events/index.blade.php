@@ -15,14 +15,16 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">User</th>
                                 </tr>
                             </thead>
                             <tbody>
                         @foreach ($events as $index => $event)
                             <tr>
-                                <th scope="row">{{ $index + 1 }}</th>
+                                <th scope="row">{{ $events->firstItem() + $index }}</th>
                                 <td><a href="{{ route('events.show', $event) }}">{{ $event->name }}</a></td>
                                 <td>{{ $event->statusName }}</td>
+                                <td>{{ $event->user->name }}</td>
                             </tr>
                         @endforeach
                             </tbody>
@@ -30,6 +32,7 @@
                     @else
                         <div>{{ __('There is no event here!') }}</div>
                     @endif
+                    {{ $events->links() }}
                     @can('create', App\Event::class)
                         <div>{!! sprintf(__('Why not <a href="%s">create a new event</a>?'), route('events.create')) !!}</div>
                     @endcan

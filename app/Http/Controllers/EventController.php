@@ -22,12 +22,14 @@ class EventController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()) {
-            $events = Event::published()->get();
-        } else {
-            $events = Auth::user()->events;
-        }
-        return view('events.index')->with(compact('events'));
+        $events = Event::published()->paginate();
+        return view('events.index', compact('events'));
+    }
+
+    public function mine()
+    {
+        $events =  Auth::user()->events()->paginate();
+        return view('events.index', compact('events'));
     }
 
     /**
