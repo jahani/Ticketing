@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Section extends Model
 {
@@ -69,5 +70,34 @@ class Section extends Model
         }
 
         return [$rows, $cols];
+    }
+
+    public function addRows(Array $rows)
+    {
+        // Reset index
+        $rows = array_values($rows);
+        
+        // Validate bounding
+        if(min($rows) < 0) {
+            throw new Exception("Seats count can't be less than zero!", 1);
+        }
+
+        
+        // Create seats
+        $section = $this;
+        DB::transaction(function() use ($section, $rows)
+        {
+            foreach ($rows as $i => $seatNumbers) {
+                for ($j=1; $j <= $seatNumbers; $j++) { 
+                    $seat = new Seat();
+                    $seat->row_number = $i + 1;
+                    $seat->seat_number = $j;
+                    $section->seats()->save($seat);
+                }
+            }
+        });
+        
+        // If succeeded
+        return true;
     }
 }

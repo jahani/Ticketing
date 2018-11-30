@@ -46,3 +46,10 @@ Route::group(['prefix' => 'sectionshows'], function() {
     Route::post('show/{show}', 'SectionShowController@store')
         ->name('sectionshows.shows.store');
 });
+
+Route::group(['prefix' => 'seatfactory/{section}'], function() {
+    Route::get('/create', 'SeatFactoryController@create')
+        ->name('seatfactory.create');
+    Route::get('/delete', 'SeatFactoryController@destroy')
+        ->name('seatfactory.destroy');
+});
