@@ -16,6 +16,8 @@ $factory->define(App\Event::class, function (Faker $faker) {
 $factory->define(App\Show::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'start' => $faker->dateTimeBetween('+0 days', '+1 week'),
+        'end' => $faker->dateTimeBetween('+1 week', '+2 week'),
         'event_id' => function() {
             return factory(App\Event::class)->create();
         },

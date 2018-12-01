@@ -15,6 +15,8 @@ class CreateShowsTable extends Migration
     {
         Schema::create('shows', function (Blueprint $table) {
             $table->increments('id');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->string('name')->nullable();
             $table->unsignedInteger('event_id')->index();
             $table->timestamps();

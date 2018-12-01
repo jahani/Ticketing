@@ -21,6 +21,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">End</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,6 +30,14 @@
                             <tr>
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td><a href="{{ route('shows.show', $show) }}">{{ $show->name }}</a></td>
+                                <td>
+                                    {{ $show->start->toDateTimeString() }}
+                                    ({{ $show->start->diffForHumans() }})
+                                </td>
+                                <td>
+                                    {{ $show->end->toFormattedDateString() }}
+                                    ({{ $show->end->diffForHumans($show->start, true) }})
+                                </td>
                             </tr>
                         @endforeach
                             </tbody>

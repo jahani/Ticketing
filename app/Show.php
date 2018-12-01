@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Show extends Model
 {
+    protected $casts = [
+        'start' => 'datetime',
+        'end' => 'datetime',
+    ];
+
     protected $fillable = ['name'];
+
+    /**
+     * Relations
+     */
 
     public function event()
     {
@@ -27,6 +36,10 @@ class Show extends Model
             ->withTimestamps()
             ->using(SeatShow::class);
     }
+
+    /**
+     * Helpers
+     */
 
     public function sectionSeats(Section $section)
     {
