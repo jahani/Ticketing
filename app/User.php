@@ -28,14 +28,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
-    {
-        // TODO : use a better approach, maybe a field
-        return $this->id == 1;
-    }
+    /**
+     * Relations
+     */
 
     public function events()
     {
         return $this->hasMany(Event::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Helpers
+     */
+
+    public function isAdmin()
+    {
+        // TODO : use a better approach, maybe a field
+        return $this->id == 1;
+    }
+    
 }

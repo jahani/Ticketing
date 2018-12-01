@@ -16,9 +16,11 @@ class CreateSeatShowTable extends Migration
         Schema::create('seat_show', function (Blueprint $table) {
             $table->unsignedInteger('seat_id')->index();
             $table->unsignedInteger('show_id')->index();
+            $table->integer('price')->nullable();
             $table->unsignedTinyInteger('status');
             $table->string('session_id', 100)->nullable()->index();
             $table->unsignedInteger('user_id')->nullable()->index();
+            $table->unsignedInteger('order_id')->nullable()->index();
             $table->timestamps();
 
             $table->primary(['seat_id', 'show_id']);
@@ -28,6 +30,8 @@ class CreateSeatShowTable extends Migration
                 ->on('shows')->onDelete('restrict');
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('restrict');
+            $table->foreign('order_id')->references('id')
+                ->on('orders')->onDelete('restrict');
         });
     }
 

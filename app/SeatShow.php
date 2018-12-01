@@ -9,19 +9,33 @@ use Illuminate\Support\Facades\Auth;
 
 class SeatShow extends Pivot
 {
-    // public function setStatusAttribute($value)
-    // {
-    //     $this->attributes['status_code'] = SeatBookType::getValue($value);
-    // }
 
-    // public function getStatusAttribute()
-    // {
-    //     return SeatBookType::getKey($this->status_code);
-    // }
+    /**
+     * Relations
+     */
+
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class);
+    }
+
+    public function show()
+    {
+        return $this->belongsTo(Show::class);
+    }
 
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    /**
+     * Helpers
+     */
 
     public function getStatus()
     {
@@ -73,5 +87,39 @@ class SeatShow extends Pivot
     {
         // TODO : if bookable
         return true;
+    }
+
+    public function getPrice()
+    {
+        return $this->show->sections
+        ->whereStrict('id', $this->seat->section->id)
+        ->first()->pivot->price;
+    }
+
+    public function attachToOrder(Order $order)
+    {
+        // TODO : if does not already have an order
+
+        $this->show->seats()
+            ->updateExistingPivot($this->seat->id, [
+                'price' => $this->getPrice(),
+                'order_id' => $order->id
+            ]);
+        // TODO : why this example is not working as expected:
+        // $seatShow->price = 3500;
+        // $seatShow->save();
+        // dd($seatShow);
+    }
+
+    public static function currentClientReserves()
+    {
+        return self::where('status', SeatBookType::Reserved)
+            ->whereNull('order_id')
+            ->Where(function($q) {
+                $q->where('session_id', session()->getId());
+                if (Auth::check()) {
+                    $q->orWhere('user_id', Auth::id());
+                }
+            });
     }
 }

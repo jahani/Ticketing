@@ -25,6 +25,7 @@ Route::get('events/mine', 'EventController@mine')
 
 Route::resources([
     'events' => 'EventController',
+    'orders' => 'OrderController',
 ]);
 
 Route::resource('events.shows', 'ShowController')

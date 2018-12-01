@@ -25,6 +25,11 @@
                     <p>Please chooose your seats.</p>
 
                     @include('sections.seats')
+
+                    <br>
+                    <a class="btn btn-primary" role="button" href="{{ route('orders.create') }}">
+                        {{ __('Cart') }}
+                    </a>
                 </div>
             </div>
         </div>
