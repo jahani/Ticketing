@@ -60,7 +60,7 @@ class EventController extends Controller
         $event = new Event();
         $event->fill($request->except(['image']));
         if ($request->hasFile('image')) {
-            $event->image = $request->file('image')->store('events');
+            $event->image = $request->file('image')->store('uploads/events', 'public');
         }
         Auth::user()->events()->save($event);
 
