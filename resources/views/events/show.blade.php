@@ -7,8 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Event Details') }}</div>
 
-                <img class="img-fluid"
-                    src="{{ $event->getImageURL() }}">
+                <img class="img-fluid" src="{{ $event->getImageURL() }}">
                 <div class="card-body">
 
                     <h1>{{ $event->name }}</h1>

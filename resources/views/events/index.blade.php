@@ -16,15 +16,35 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">User</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                         @foreach ($events as $index => $event)
                             <tr>
                                 <th scope="row">{{ $events->firstItem() + $index }}</th>
-                                <td><a href="{{ route('events.show', $event) }}">{{ $event->name }}</a></td>
+                                <td>{{ $event->name }}</td>
                                 <td>{{ $event->statusName }}</td>
                                 <td>{{ $event->user->name }}</td>
+                                <td>
+                                    @can('view', $event)
+                                        <a class="btn btn-sm btn-primary" href="{{ route('events.show', $event) }}" role="button">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    @endcan
+                                    @can('update', $event)
+                                        <a class="btn btn-sm btn-secondary" href="{{ route('events.edit', $event) }}" role="button">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete', $event)
+                                        {!!Form::open()->delete()->route('events.destroy', [$event])->attrs(['class'=>'inline-form'])!!}
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        {!!Form::close()!!}
+                                    @endcan
+                                </td>
                             </tr>
                         @endforeach
                             </tbody>

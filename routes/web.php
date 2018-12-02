@@ -19,9 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('events/mine', 'EventController@mine')
-    ->name('events.mine')->middleware('auth');
+// User specific pages
+Route::group(['prefix' => 'my', 'middleware' => ['auth']], function() {
+        Route::get('events', 'EventController@my')
+            ->name('my.events')->middleware('auth');
+});
 
 Route::resources([
     'events' => 'EventController',

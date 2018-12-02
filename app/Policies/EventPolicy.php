@@ -22,7 +22,7 @@ class EventPolicy
     {
         if ($event->isPublished()) return true;
         if (is_null($user)) return false;
-        if ($user->is($event->user)) return true;
+        return $user->is($event->user);
     }
 
     /**
@@ -45,8 +45,7 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        // TODO
-        return true;
+        return $user->is($event->user);
     }
 
     /**
@@ -58,7 +57,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event)
     {
-        //
+        return $user->is($event->user);
     }
 
     /**

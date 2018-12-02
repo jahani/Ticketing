@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\{Event};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
-use App\Enums\PublishType;
-use BenSampo\Enum\Rules\EnumValue;
+use App\Http\Requests\EventRequest;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
@@ -26,7 +25,7 @@ class EventController extends Controller
         return view('events.index', compact('events'));
     }
 
-    public function mine()
+    public function my()
     {
         $events =  Auth::user()->events()->paginate();
         return view('events.index', compact('events'));
@@ -48,15 +47,8 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        
-        $this->validate($request, [
-            'name' => 'required|min:3|max:180',
-            'image' => 'mimes:png,gif,jpeg,jpg|max:1024',
-            'status' => [new EnumValue(PublishType::class, false)],
-        ]);
-        
         $event = new Event();
         $event->fill($request->except(['image']));
         if ($request->hasFile('image')) {
@@ -64,7 +56,7 @@ class EventController extends Controller
         }
         Auth::user()->events()->save($event);
 
-        return redirect()->route('events.index');
+        return redirect()->route('my.events');
     }
 
     /**
@@ -87,7 +79,7 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        return view('events.create', compact('event'));
     }
 
     /**
@@ -97,9 +89,17 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        //
+        $event->fill($request->except(['image']));
+        if ($request->hasFile('image')) {
+            $event->image = $request->file('image')->store('uploads/events', 'public');
+        }
+        $event->save();
+
+        session()->flash('message', __('Event has been successfully updated.'));
+
+        return redirect()->back();
     }
 
     /**
@@ -110,6 +110,9 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        session()->flash('message', __('Event has been successfully deleted.'));
+        session()->flash('alert-class', 'alert-danger');
+        return redirect()->route('my.events');
     }
 }

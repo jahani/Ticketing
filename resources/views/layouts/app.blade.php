@@ -58,7 +58,7 @@
                                     <a class="dropdown-item" href="{{ route('orders.index') }}">
                                         {{ __('Orders') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('events.mine') }}">
+                                    <a class="dropdown-item" href="{{ route('my.events') }}">
                                         {{ __('Events') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

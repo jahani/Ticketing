@@ -37,7 +37,20 @@ class Event extends Model
     /**
      * Model Properties
      */
+    
+    public function save(array $options = []) {
 
+        // Delete old image if image is updated
+        if ($this->isDirty('image')) {
+            $path = $this->getOriginal('image');
+            if (isset($path)) {
+                Storage::disk('public')->delete($path);
+            }
+        }
+
+        return parent::save($options);
+    }
+    
     public function delete()
     {
         $result = parent::delete();
