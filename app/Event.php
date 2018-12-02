@@ -11,10 +11,9 @@ class Event extends Model
     protected $perPage = 5;
     protected $fillable = ['name', 'status'];
 
-    public function getStatusNameAttribute()
-    {
-        return PublishType::getDescription($this->status);
-    }
+    /**
+     * Relations
+     */
 
     public function shows()
     {
@@ -25,6 +24,36 @@ class Event extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Attributes
+     */
+
+    public function getStatusNameAttribute()
+    {
+        return PublishType::getDescription($this->status);
+    }
+
+    /**
+     * Model Properties
+     */
+
+    public function delete()
+    {
+        $result = parent::delete();
+
+        // Delete dependencies after removing item
+        $path = $this->image;
+        if ($result and isset($path)) {
+            Storage::disk('public')->delete($path);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Helpers
+     */
 
     public function isPublished()
     {
