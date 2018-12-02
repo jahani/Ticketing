@@ -11,7 +11,7 @@ class Show extends Model
         'end' => 'datetime',
     ];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'start', 'end'];
 
     /**
      * Relations

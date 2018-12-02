@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Show, Event, Section};
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ShowController extends Controller
 {
@@ -35,8 +36,18 @@ class ShowController extends Controller
      */
     public function store(Request $request, Event $event)
     {
-        // TODO: Validate
-        $event->shows()->create($request->all());
+        $this->validate($request, [
+            'name' => 'required|min:3|max:180',
+            'start' => 'required',
+            'end' => 'required|after:start',
+        ]);
+
+        $show = new Show();
+        $show->fill($request->except('start', 'end'));
+        $show->start = Carbon::parse($request->input('start'))->toDateTimeString();
+        $show->end = Carbon::parse($request->input('end'))->toDateTimeString();
+        
+        $event->shows()->save($show);
 
         return redirect()->route('events.show', $event);
     }

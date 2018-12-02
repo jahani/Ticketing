@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./datetimepicker');
 
 window.Vue = require('vue');
 
