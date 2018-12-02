@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Event;
-use BenSampo\Enum\Enum\EventStatusType;
+use BenSampo\Enum\Enum\PublishType;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EventPolicy

@@ -44,7 +44,7 @@
 
                             <div class="col-md-6">
                                 @php
-                                    $statuses = App\Enums\EventStatusType::toSelectArray();
+                                    $statuses = App\Enums\PublishType::toSelectArray();
                                 @endphp
                                 @foreach ($statuses as $statusKey => $statusDescription)
                                     <div class="form-check">

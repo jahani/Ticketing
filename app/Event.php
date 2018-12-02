@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Enums\EventStatusType;
+use App\Enums\PublishType;
 use Illuminate\Support\Facades\Storage;
 
 class Event extends Model
@@ -13,7 +13,7 @@ class Event extends Model
 
     public function getStatusNameAttribute()
     {
-        return EventStatusType::getDescription($this->status);
+        return PublishType::getDescription($this->status);
     }
 
     public function shows()
@@ -28,12 +28,12 @@ class Event extends Model
 
     public function isPublished()
     {
-        return $this->status == EventStatusType::Published;
+        return $this->status == PublishType::Published;
     }
     
     public function scopePublished($query)
     {
-        return $query->where('status', EventStatusType::Published);
+        return $query->where('status', PublishType::Published);
     }
 
     public function getImageURL()

@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Event::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'status' => App\Enums\EventStatusType::Published,
+        'status' => App\Enums\PublishType::Published,
         'user_id' => function() {
             return App\User::find(1)->id;
         },

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\{Event};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
-use App\Enums\EventStatusType;
+use App\Enums\PublishType;
 use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Support\Facades\Storage;
 
@@ -54,7 +54,7 @@ class EventController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3|max:180',
             'image' => 'mimes:png,gif,jpeg,jpg|max:1024',
-            'status' => [new EnumValue(EventStatusType::class, false)],
+            'status' => [new EnumValue(PublishType::class, false)],
         ]);
         
         $event = new Event();
