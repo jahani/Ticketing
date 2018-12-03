@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Event extends Model
 {
     protected $perPage = 5;
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name', 'status', 'description'];
 
     /**
      * Relations

@@ -25,6 +25,7 @@
                         {!!Form::open()->post()->route('events.store')->multipart()!!}
                     @endif
                     {!!Form::text('name', 'Name')!!}
+                    {!!Form::textarea('description', 'Description')!!}
                     {!!Form::file('image', 'Image')!!}
                     {!!Form::select('status', 'Status', App\Enums\PublishType::toSelectArray())!!}
                     {!!Form::submit(__('Submit'))!!}

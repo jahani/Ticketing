@@ -12,6 +12,7 @@
 
                     <h1>{{ $event->name }}</h1>
                     <div>Status: {{ $event->statusName }}</div>
+                    <div>{!! nl2br(e($event->description)) !!}</div>
 
                     <h2>Shows</h2>
                     @if ($event->shows->count())
