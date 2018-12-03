@@ -15,7 +15,7 @@
                     @endif
                     <h1>Section: {{ $section->name }}</h1>
                     <h1>Show: {{ $show->name }}</h1>
-                    <h1>Price: {{ $show->sectionPrice($section) }} Tomans</h1>
+                    <h1>Price: @price($show->sectionPrice($section))</h1>
                     <h4>
                         {{ __('Belongs to ') }}
                         {{ $section->stage->name }}{{ __(', ') }}

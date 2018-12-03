@@ -4,6 +4,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Status</th>
+                <th scope="col">Total Price</th>
                 <th scope="col">Commands</th>
             </tr>
         </thead>
@@ -12,6 +13,7 @@
         <tr>
             <td>{{ $order->id }}</td>
             <td>{{ app('App\Enums\OrderType')::getDescription($order->status) }}</td>
+            <td>@price($order->getTotalPrice())</td>
             <td>
                 <a class="btn btn-primary" role="button" href="{{ route('orders.show', [$order]) }}">
                     {{ __('Show') }}

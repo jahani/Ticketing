@@ -36,6 +36,15 @@ class Order extends Model
         return self::getCart($this);
     }
 
+    public function getTotalPrice()
+    {
+        return $this->seatShows->sum('price');
+    }
+
+    /**
+     * Class Functions
+     */
+
     public static function getCart(?Order $order = null)
     {
         if (is_null($order)) {

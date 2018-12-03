@@ -32,7 +32,7 @@
                                 <td>{{ $section->name }}</td>
                                 <td>{{ $section->stage->name }}</td>
                                 <td>{{ $section->stage->venue->name }}</td>
-                                <td>{{ $section->pivot->price }}</td>
+                                <td>@price($section->pivot->price)</td>
                                 <td>
                                     <a class="btn btn-primary btn-sm" role="button"
                                         href="{{ route('reserves.show', [$show, $section]) }}">

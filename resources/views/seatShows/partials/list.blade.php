@@ -20,14 +20,14 @@
                     <td>{{ $seatShow->seat->row_number }}</td>
                     <td>{{ $seatShow->seat->seat_number }}</td>
                     <td>{{ $seatShow->show->name }}</td>
-                    <td>{{ $seatShow->price }}</td>
+                    <td>@price($seatShow->price)</td>
                 </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="3">
-                    {{ __('Sum: :sum', ['sum' => $seatShows->sum('price')]) }}
+                    {{ __('Sum: ') }} @price($seatShows->sum('price'))
                 </td>
             </tr>
         </tfoot>
