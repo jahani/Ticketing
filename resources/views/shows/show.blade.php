@@ -34,8 +34,10 @@
                                 <td>{{ $section->stage->venue->name }}</td>
                                 <td>{{ $section->pivot->price }}</td>
                                 <td>
-                                    <a href="{{ route('reserves.show', [$show, $section]) }}">
-                                        {!!Form::button("Reserve", "info", "sm")!!}
+                                    <a class="btn btn-primary btn-sm" role="button"
+                                        href="{{ route('reserves.show', [$show, $section]) }}">
+                                        <i class="fa fa-calendar-plus-o"></i>&nbsp;
+                                        Reserve
                                     </a>
                                 </td>
                             </tr>

@@ -54,7 +54,10 @@
                     @endif
                     {{ $events->links() }}
                     @can('create', App\Event::class)
-                        <div>{!! sprintf(__('Why not <a href="%s">create a new event</a>?'), route('events.create')) !!}</div>
+                        <a href="{{ route('events.create') }}" role="button" class="btn btn-primary">
+                            <i class="fa fa-plus"></i>&nbsp;
+                            {{ __('Create an Event') }}
+                        </a>
                     @endcan
                 </div>
             </div>
