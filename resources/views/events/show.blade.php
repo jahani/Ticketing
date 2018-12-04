@@ -10,6 +10,19 @@
                 <img class="img-fluid" src="{{ $event->getImageURL() }}">
                 <div class="card-body">
 
+                    @can('update', $event)
+                        <a class="btn btn-sm btn-secondary" href="{{ route('events.edit', $event) }}" role="button">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    @endcan
+                    @can('delete', $event)
+                        {!!Form::open()->delete()->route('events.destroy', [$event])->attrs(['class'=>'inline-form'])!!}
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        {!!Form::close()!!}
+                    @endcan
+
                     <h1>{{ $event->name }}</h1>
                     <div>Status: {{ $event->statusName }}</div>
                     <div>{!! nl2br(e($event->description)) !!}</div>
