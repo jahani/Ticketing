@@ -85,11 +85,8 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('events.index') }}">Events</a>
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ route('events.index') }}">{{ __('Events') }}</a>
+                    <a href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
                 </div>
             </div>
         </div>
