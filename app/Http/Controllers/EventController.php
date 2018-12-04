@@ -22,13 +22,13 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::published()->paginate();
-        return view('events.index', compact('events'));
+        return view('events.list', compact('events'));
     }
 
     public function my()
     {
         $events =  Auth::user()->events()->paginate();
-        return view('events.index', compact('events'));
+        return view('events.list', compact('events'));
     }
 
     /**
