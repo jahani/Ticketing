@@ -115,7 +115,7 @@ class Order extends Model
                 $order->user_id = auth()->id();
             } else {
                 $order->tracking_code = str_random(
-                    config('tracking_code_length')
+                    config('app.tracking_code_length')
                 );
             }
             $order->save();
