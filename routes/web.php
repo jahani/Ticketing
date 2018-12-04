@@ -24,6 +24,8 @@ Route::group(['prefix' => 'my', 'middleware' => ['auth']], function() {
         Route::get('events', 'EventController@my')->name('my.events');
 });
 
+Route::post('orders/track', 'OrderController@track')->name('orders.track');
+
 Route::resources([
     'events' => 'EventController',
     'orders' => 'OrderController',
