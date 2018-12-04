@@ -21,8 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // User specific pages
 Route::group(['prefix' => 'my', 'middleware' => ['auth']], function() {
-        Route::get('events', 'EventController@my')
-            ->name('my.events')->middleware('auth');
+        Route::get('events', 'EventController@my')->name('my.events');
 });
 
 Route::resources([

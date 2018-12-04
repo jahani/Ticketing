@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Enums\SeatBookType;
+use App\Enums\{SeatBookType, OrderType};
 
 class Order extends Model
 {
@@ -25,6 +25,29 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Actions
+     */
+
+    public function cancel()
+    {
+        // If order is cancelable
+        if ($this->status != OrderType::Waiting) return false;
+        
+        DB::beginTransaction();
+        try {
+            $this->seatShows()->delete();
+            $this->status = OrderType::Cancelled;
+            $this->save();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+        DB::commit();
+        
+        return true;
     }
 
     /**
