@@ -34,6 +34,34 @@ class SeatShow extends Pivot
     }
 
     /**
+     * Class Actions
+     */
+
+    public static function cleanup()
+    {
+        return self::expired()->delete();
+    }
+
+    /**
+     * Scopes
+     */
+
+    public function scopeExpired($query)
+    {
+        return $query->reserved()
+            ->where(
+                'updated_at', '<',
+                now()->subMinutes(config('app.reserves_expire_timeout'))
+            );
+    }
+
+    public function scopeReserved($query)
+    {
+        return $query->where('status', SeatBookType::Reserved)
+            ->whereNull('order_id');
+    }
+
+    /**
      * Helpers
      */
 

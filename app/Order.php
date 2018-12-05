@@ -64,6 +64,31 @@ class Order extends Model
         return $this->seatShows->sum('price');
     }
 
+    public function scopeWaiting($query)
+    {
+        return $query->where('status', OrderType::Waiting);
+    }
+
+    public function scopeExpired($query)
+    {
+        return $query->waiting()
+            ->where(
+                'updated_at', '<',
+                now()->subMinutes(config('app.orders_expire_timeout'))
+            );
+    }
+
+    /**
+     * Class Actions
+     */
+
+    public static function cleanup()
+    {
+        return self::expired()->get()->each(function($order, $key){
+            return $order->cancel();
+        });
+    }
+
     /**
      * Class Functions
      */

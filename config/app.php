@@ -9,6 +9,8 @@ return [
     |
     */
 
+    'reserves_expire_timeout' => 10, // in minutes
+    'orders_expire_timeout' => 15, // in minuets
     'tracking_code_length' => 8,
 
 
