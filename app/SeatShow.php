@@ -82,6 +82,7 @@ class SeatShow extends Pivot
 
     public function isReservedForClient()
     {
+        if (isset($this->order_id)) return false;
         if (!($this->isReserved())) return false;
         if (session()->getId() == $this->session_id and !is_null($this->session_id)) {
             return true;
