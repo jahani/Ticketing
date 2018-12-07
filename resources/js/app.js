@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('./datetimepicker');
 require('./countdown');
+require('./nprogress');
 
 window.Vue = require('vue');
 window.VueVisible = require('vue-visible');

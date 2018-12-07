@@ -24,6 +24,7 @@
     "dependencies": {
         "font-awesome": "^4.7.0",
         "jquery-countdown": "^2.2.0",
+        "nprogress": "^0.2.0",
         "tempusdominus-bootstrap-4": "^5.1.2",
         "vue-visible": "^1.0.2"
     }
