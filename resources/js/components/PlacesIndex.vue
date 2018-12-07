@@ -2,6 +2,12 @@
     <div>
 
         <h1>Venues</h1>
+        <select v-model="selectedVenue" class="form-control">
+            <option value="null" disabled>Select an option</option>
+            <option v-for="option in venues" v-bind:value="option.id">
+                {{ option.name }}
+            </option>
+        </select>
         <table class="table table-sm table-hover">
             <thead class="thead-light">
                 <tr>
@@ -24,11 +30,6 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <select v-model="selectedVenue" class="mb-3">
-            <option v-for="option in venues" v-bind:value="option.id">
-                {{ option.name }}
-            </option>
-        </select> -->
 
         <h1>Stages <small v-if="selectedVenue !== null">for {{ getVenue(selectedVenue).name }}</small></h1>
         <table class="table table-sm table-hover">
