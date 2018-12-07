@@ -10,6 +10,8 @@ require('./datetimepicker');
 require('./countdown');
 
 window.Vue = require('vue');
+window.VueVisible = require('vue-visible');
+Vue.use(VueVisible);
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +23,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('section-factory', require('./components/SectionFactory.vue'));
+Vue.component('places-index', require('./components/PlacesIndex.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))

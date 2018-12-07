@@ -28,7 +28,13 @@ Route::post('orders/track', 'OrderController@track')->name('orders.track');
 
 Route::resources([
     'events' => 'EventController',
+
     'orders' => 'OrderController',
+
+    'venues' => 'VenueController',
+    'venues.stages' => 'StageController',
+    'stages.sections' => 'SectionController',
+    'sections.seats' => 'SeatController',
 ]);
 
 Route::resource('events.shows', 'ShowController')
@@ -59,3 +65,6 @@ Route::group(['prefix' => 'seatfactory/{section}'], function() {
     Route::post('/', 'SeatFactoryController@store')
         ->name('seatfactory.store');
 });
+
+// VueJS Manage Places
+Route::get('places', 'PlaceController@index')->name('places.index');
