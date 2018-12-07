@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Gate;
 class SeatFactoryController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'auth.admin'])->except('store');
-        // $this->middleware(['auth', 'auth.admin'])->only('store'); // TODO: Authenticate in API MODE
+        $this->middleware(['auth', 'auth.admin']);
     }
 
     private static function isCreatable(Section $section)
@@ -45,12 +44,12 @@ class SeatFactoryController extends Controller
         }
         
         $rows = array();
-        foreach ($request->input() as $row) {
+        foreach ($request->input('rows') as $row) {
             if(array_key_exists("value",$row)) {
                 array_push($rows, $row['value']);
             }
         }
-        
+
         if(empty($rows)) {
             return response()->json(['data' => 'No proper value is passed.'], 401);
         }

@@ -56,4 +56,6 @@ Route::group(['prefix' => 'seatfactory/{section}'], function() {
         ->name('seatfactory.create');
     Route::get('/delete', 'SeatFactoryController@destroy')
         ->name('seatfactory.destroy');
+    Route::post('/', 'SeatFactoryController@store')
+        ->name('seatfactory.store');
 });

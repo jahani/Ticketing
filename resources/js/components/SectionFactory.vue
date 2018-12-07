@@ -42,13 +42,9 @@
                 this.rows.splice(index, 1);
             },
             submit() {
-                fetch('/api/seatfactory/' + this.section_id, {
-                    method: 'post',
-                    body: JSON.stringify(this.rows),
-                    headers: {
-                        'content-type': 'application/json'
-                }})
-                .then(res => res.json())
+                axios.post('/seatfactory/' + this.section_id, {
+                    rows: this.rows,
+                })
                 .then(res => {
                     this.showForm = false
                     console.log(res.data)
