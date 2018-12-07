@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
+        "jquery-countdown": "^2.2.0",
         "tempusdominus-bootstrap-4": "^5.1.2"
     }
 }

@@ -64,6 +64,12 @@ class Order extends Model
         return $this->seatShows->sum('price');
     }
 
+    public function secondsUntilExpire()
+    {
+        $expireTime = $this->created_at->addMinutes(config('app.orders_expire_timeout'));
+        return now()->diffInSeconds($expireTime, false);
+    }
+
     public function scopeWaiting($query)
     {
         return $query->where('status', OrderType::Waiting);
@@ -73,7 +79,7 @@ class Order extends Model
     {
         return $query->waiting()
             ->where(
-                'updated_at', '<',
+                'created_at', '<',
                 now()->subMinutes(config('app.orders_expire_timeout'))
             );
     }
