@@ -13,21 +13,30 @@
             @select="selectVenue"
         />
 
-        <h1 v-show="selectedVenue">Stages <small v-if="selectedVenue !== null">for {{ getVenue(selectedVenue).name }}</small></h1>
+        <h1 v-if="selectedVenue">
+            Stages
+            <small>for {{ getObjectByID(venues, selectedVenue).name }}</small>
+        </h1>
         <stages-table
             v-show="selectedVenue"
             v-bind:list="stages"
             @select="selectStage"
         />
 
-        <h1 v-show="selectedStage">Sections <small v-if="selectedStage !== null">for {{ getStage(selectedStage).name }}</small></h1>
+        <h1 v-if="selectedStage">
+            Sections
+            <small>for {{ getObjectByID(stages, selectedStage).name }}</small>
+        </h1>
         <sections-table
             v-show="selectedStage"
             v-bind:list="sections"
             @select="selectSection"
         />
 
-        <h1 v-show="selectedSection">Seats <small v-if="selectedSection !== null">for {{ getSection(selectedSection).name }}</small></h1>
+        <h1 v-if="selectedSection">
+            Seats
+            <small>for {{ getObjectByID(sections, selectedSection).name }}</small>
+        </h1>
         <seats-table
             v-show="selectedSection"
             v-bind:list="seats"
@@ -42,9 +51,7 @@ import StagesTable from './places/StagesTable';
 import SectionsTable from './places/SectionsTable';
 import SeatsTable from './places/SeatsTable';
 export default {
-    props: {
-        
-    },
+    props: {},
 
     data() {
         return {
@@ -95,17 +102,11 @@ export default {
                 console.log(res.data);
             });
         },
-        getVenue(id) {
-            return this.venues.find(obj => obj.id == id);
+        getObject(array, key, value) {
+            return array.find(obj => obj[key] == value);
         },
-        getStage(id) {
-            return this.stages.find(obj => obj.id == id);
-        },
-        getSection(id) {
-            return this.sections.find(obj => obj.id == id);
-        },
-        getSeat(id) {
-            return this.seats.find(obj => obj.id == id);
+        getObjectByID(array, value) {
+            return this.getObject(array, 'id', value);
         },
         selectVenue(id) {
             this.resetStages();
@@ -153,10 +154,6 @@ export default {
                 this.fetchSeats(id);
             }
         },
-    },
-
-    mounted() {
-        console.log('Sections Index Component mounted.')
     },
 
     components: {
