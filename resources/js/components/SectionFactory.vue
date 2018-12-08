@@ -1,10 +1,10 @@
 <template>
     <div v-if="showForm">
         <div>
-            <div v-for="(row, index) in rows" class="form-group row">
+            <div v-for="(row, index) in rows" :key="index" class="form-group row">
                 <label v-bind:for="'row-' + index" class="col-sm-4 col-form-label">Row #{{ index+1 }}</label>
                 <div class="col-sm-4">
-                    <input type="number" v-model:value="row.value" class="form-control" v-bind:id="'row-' + index" placeholder="Seat Numbers">
+                    <input type="number" v-model:value="row.value" class="form-control" placeholder="Seat Numbers">
                 </div>
                 <div class="col-sm-4">
                     <button v-on:click="removeRow(index)" class="btn">Remove</button>
