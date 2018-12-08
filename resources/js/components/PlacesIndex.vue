@@ -4,7 +4,7 @@
         <h1>Venues</h1>
         <select v-model="selectedVenue" class="form-control">
             <option value="null" disabled>Select an option</option>
-            <option v-for="option in venues" v-bind:value="option.id">
+            <option v-for="option in venues" :key="option.id" :value="option.id">
                 {{ option.name }}
             </option>
         </select>
