@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Section extends Model
 {
+    protected $fillable = ['name'];
+
     public function stage()
     {
         return $this->belongsTo(Stage::class);

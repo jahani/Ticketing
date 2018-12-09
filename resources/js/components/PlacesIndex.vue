@@ -9,8 +9,17 @@
             </option>
         </select>
         <venues-table
-            v-bind:list="venues"
+            :list="venues"
+            :selected="selectedVenue"
             @select="selectVenue"
+            @edit="goEdit('venue', $event)"
+            @remove="remove(venues, $event)"
+        />
+        <create-venue
+            :item="venue"
+            @item="venue = $event"
+            @add="add(venues, $event)"
+            @edit="edit(venues, $event)"
         />
 
         <h1 v-if="selectedVenue">
@@ -19,8 +28,20 @@
         </h1>
         <stages-table
             v-show="selectedVenue"
-            v-bind:list="stages"
+            :selectedParent="selectedVenue"
+            :list="stages"
+            :selected="selectedStage"
             @select="selectStage"
+            @edit="goEdit('stage', $event)"
+            @remove="remove(stages, $event)"
+        />
+        <create-stage
+            v-show="selectedVenue"
+            :selectedParent="selectedVenue"
+            :item="stage"
+            @item="stage = $event"
+            @add="add(stages, $event)"
+            @edit="edit(stages, $event)"
         />
 
         <h1 v-if="selectedStage">
@@ -29,8 +50,20 @@
         </h1>
         <sections-table
             v-show="selectedStage"
-            v-bind:list="sections"
+            :selectedParent="selectedStage"
+            :list="sections"
+            :selected="selectedSection"
             @select="selectSection"
+            @edit="goEdit('section', $event)"
+            @remove="remove(sections, $event)"
+        />
+        <create-section
+            v-show="selectedStage"
+            :selectedParent="selectedStage"
+            :item="section"
+            @item="section = $event"
+            @add="add(sections, $event)"
+            @edit="edit(sections, $event)"
         />
 
         <h1 v-if="selectedSection">
@@ -46,6 +79,10 @@
 </template>
 
 <script>
+import CreateVenue from './places/CreateVenue';
+import CreateStage from './places/CreateStage';
+import CreateSection from './places/CreateSection';
+
 import VenuesTable from './places/VenuesTable';
 import StagesTable from './places/StagesTable';
 import SectionsTable from './places/SectionsTable';
@@ -63,6 +100,11 @@ export default {
             selectedSection: null,
             seats: [],
             selectedSeat: null,
+
+            venue: {},
+            stage: {},
+            section: {},
+            seat: {},
         };
     },
 
@@ -75,7 +117,6 @@ export default {
             axios.get('/venues')
             .then(res => {
                 this.venues = res.data;
-                console.log(res.data);
             });
         },
         fetchStages(id) {
@@ -83,7 +124,6 @@ export default {
             axios.get(url)
             .then(res => {
                 this.stages = res.data;
-                console.log(res.data);
             });
         },
         fetchSections(id) {
@@ -91,7 +131,6 @@ export default {
             axios.get(url)
             .then(res => {
                 this.sections = res.data;
-                console.log(res.data);
             });
         },
         fetchSeats(id) {
@@ -99,7 +138,6 @@ export default {
             axios.get(url)
             .then(res => {
                 this.seats = res.data;
-                console.log(res.data);
             });
         },
         getObject(array, key, value) {
@@ -107,6 +145,12 @@ export default {
         },
         getObjectByID(array, value) {
             return this.getObject(array, 'id', value);
+        },
+        getIndex(array, key, value) {
+            return _.findKey(array, obj => obj[key] == value);
+        },
+        getIndexByID(array, value) {
+            return this.getIndex(array, 'id', value);
         },
         selectVenue(id) {
             this.resetStages();
@@ -117,6 +161,7 @@ export default {
             this.selectedStage = id;
         },
         selectSection(id) {
+            this.resetSeats();
             this.selectedSection = id;
         },
         selectSeat(id) {
@@ -135,6 +180,23 @@ export default {
         resetSeats() {
             this.selectedSeat = null;
             this.seats = [];
+        },
+
+        goEdit(itemName, editItem) {
+            this[itemName] = Object.assign({}, editItem);
+        },
+
+        // UI Functions
+        add(list, item) {
+            list.push(item);
+        },
+        edit(list, item) {
+            var index = this.getIndexByID(list, item.id);
+            Vue.set(list, index, Object.assign({}, item));
+        },
+        remove(list, item) {
+            var index = this.getIndexByID(list, item.id);
+            Vue.delete(list, index);
         },
     },
 
@@ -157,6 +219,10 @@ export default {
     },
 
     components: {
+        CreateVenue,
+        CreateStage,
+        CreateSection,
+
         VenuesTable,
         StagesTable,
         SectionsTable,

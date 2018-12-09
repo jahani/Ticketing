@@ -39,7 +39,13 @@ class VenueController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:180',
+        ]);
+
+        $venue = Venue::create($request->all());
+
+        return $venue;
     }
 
     /**
@@ -73,7 +79,11 @@ class VenueController extends Controller
      */
     public function update(Request $request, Venue $venue)
     {
-        //
+        // TODO: validation
+
+        $venue->update($request->all());
+
+        return $venue;
     }
 
     /**
@@ -84,6 +94,8 @@ class VenueController extends Controller
      */
     public function destroy(Venue $venue)
     {
-        //
+        $venue->delete();
+        
+        return $venue;
     }
 }

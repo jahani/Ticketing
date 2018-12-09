@@ -43,7 +43,13 @@ class SectionController extends Controller
      */
     public function store(Request $request, Stage $stage)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:180',
+        ]);
+
+        $section = $stage->sections()->create($request->all());
+
+        return $section;
     }
 
     /**
@@ -80,7 +86,11 @@ class SectionController extends Controller
      */
     public function update(Request $request, Stage $stage, Section $section)
     {
-        //
+        // TODO: validation
+
+        $section->update($request->all());
+
+        return $section;
     }
 
     /**
@@ -92,6 +102,8 @@ class SectionController extends Controller
      */
     public function destroy(Stage $stage, Section $section)
     {
-        //
+        $section->delete();
+        
+        return $section;
     }
 }

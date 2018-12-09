@@ -39,7 +39,13 @@ class StageController extends Controller
      */
     public function store(Request $request, Venue $venue)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:180',
+        ]);
+
+        $stage = $venue->stages()->create($request->all());
+
+        return $stage;
     }
 
     /**
@@ -76,7 +82,11 @@ class StageController extends Controller
      */
     public function update(Request $request, Venue $venue, Stage $stage)
     {
-        //
+        // TODO: validation
+
+        $stage->update($request->all());
+
+        return $stage;
     }
 
     /**
@@ -88,6 +98,8 @@ class StageController extends Controller
      */
     public function destroy(Venue $venue, Stage $stage)
     {
-        //
+        $stage->delete();
+        
+        return $stage;
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stage extends Model
 {
+    protected $fillable = ['name'];
+
     public function venue()
     {
         return $this->belongsTo(Venue::class);
