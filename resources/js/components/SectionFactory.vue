@@ -27,7 +27,7 @@
 
         data() {
             return {
-                rows: [{'value': 8}, {'value': 8}, {'value': 8}],
+                rows: [{value: 8}, {value: 8}, {value: 8}],
                 showForm: true
             };
         },
@@ -43,7 +43,7 @@
             },
             submit() {
                 axios.post('/seatfactory/' + this.section_id, {
-                    rows: this.rows,
+                    rows: this.rowsArray,
                 })
                 .then(res => {
                     this.showForm = false
@@ -53,8 +53,10 @@
             }
         },
 
-        mounted() {
-            console.log('Section Factory Component mounted.')
+        computed: {
+            rowsArray: function() {
+                return this.rows.map(obj => obj.value);
+            },
         }
     }
 </script>

@@ -42,13 +42,8 @@ class SeatFactoryController extends Controller
         if (self::isCreatable($section)) {
             return response()->json(['data' => 'Section is not creatable.'], 401);
         }
-        
-        $rows = array();
-        foreach ($request->input('rows') as $row) {
-            if(array_key_exists("value",$row)) {
-                array_push($rows, $row['value']);
-            }
-        }
+
+        $rows = $request->input('rows');
 
         if(empty($rows)) {
             return response()->json(['data' => 'No proper value is passed.'], 401);
