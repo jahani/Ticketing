@@ -72,9 +72,15 @@
         </h1>
         <seats-table
             v-show="selectedSection"
-            v-bind:list="seats"
-            @select="selectSeat"
+            :seats="seats"
         />
+        <create-seat
+            v-show="selectedSection"
+            :section_id="selectedSection"
+            :seats="seats"
+            @seats="seats = $event"
+        />
+        
     </div>
 </template>
 
@@ -82,6 +88,7 @@
 import CreateVenue from './places/CreateVenue';
 import CreateStage from './places/CreateStage';
 import CreateSection from './places/CreateSection';
+import CreateSeat from './places/CreateSeat';
 
 import VenuesTable from './places/VenuesTable';
 import StagesTable from './places/StagesTable';
@@ -222,6 +229,7 @@ export default {
         CreateVenue,
         CreateStage,
         CreateSection,
+        CreateSeat,
 
         VenuesTable,
         StagesTable,

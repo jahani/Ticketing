@@ -23,7 +23,6 @@ Vue.use(VueVisible);
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('section-factory', require('./components/SectionFactory.vue'));
 Vue.component('places-index', require('./components/PlacesIndex.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
@@ -38,6 +37,15 @@ Vue.component('places-index', require('./components/PlacesIndex.vue'));
 const app = new Vue({
     el: '#app'
 });
+
+// Bootstrap tooltip directive
+Vue.directive('tooltip', function(el, binding){
+    $(el).tooltip({
+        title: binding.value,
+        placement: binding.arg,
+        trigger: 'hover'
+    })
+})
 
 
 /** Custom Scripts */

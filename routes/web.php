@@ -57,14 +57,13 @@ Route::group(['prefix' => 'sectionshows'], function() {
         ->name('sectionshows.shows.store');
 });
 
+
 Route::group(['prefix' => 'seatfactory/{section}'], function() {
-    Route::get('/create', 'SeatFactoryController@create')
-        ->name('seatfactory.create');
-    Route::get('/delete', 'SeatFactoryController@destroy')
+    Route::delete('', 'SeatFactoryController@destroy')
         ->name('seatfactory.destroy');
-    Route::post('/', 'SeatFactoryController@store')
+    Route::post('', 'SeatFactoryController@store')
         ->name('seatfactory.store');
 });
 
-// VueJS Manage Places
+
 Route::get('places', 'PlaceController@index')->name('places.index');

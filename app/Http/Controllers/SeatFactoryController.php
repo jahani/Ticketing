@@ -16,60 +16,45 @@ class SeatFactoryController extends Controller
     private static function isCreatable(Section $section)
     {
         if($section->seats->isNotEmpty()) {
-            session()->flash('message',
-                __(
-                    'This section already has :number seats!
-                    <br>You may delete all of them <a href=":href">here</a>',
-                    ['number' => $section->seats->count(), 'href' => route('seatfactory.destroy', $section)]
-                )
-            );
-            session()->flash('alert-class', 'alert-danger');
-            return true;
+            return false;
         }
-        return false;
-    }
-
-    public function create(Section $section)
-    {
-        if (self::isCreatable($section)) {
-            return view('layouts.app');
-        }
-        return view('seatfactory.create', compact('section'));
+        return true;
     }
     
     public function store(Request $request, Section $section)
     {
-        if (self::isCreatable($section)) {
-            return response()->json(['data' => 'Section is not creatable.'], 401);
+        if (!self::isCreatable($section)) {
+            return ['ok' => false, 'error' => 'Section already has some seats.'];
         }
 
         $rows = $request->input('rows');
 
         if(empty($rows)) {
-            return response()->json(['data' => 'No proper value is passed.'], 401);
+            return ['ok' => false, 'error' => 'No proper value is passed.'];
         }
 
         if (!$section->addRows($rows)) {
-            return response()->json(['data' => 'There was an error for adding seats.'], 401);
+            return ['ok' => false, 'error' => 'There was an error for adding seats.'];
         }
 
-        return response()->json(['data' => 'Seats added to database']);
+        return ['ok' => true, 'message' => 'Seats added to database', 'seats' => $section->seats()->get()];
     }
 
     public function destroy(Section $section)
     {
+
         $seats = $section->seats;
         $seats->load('shows');
         foreach ($seats as $seat) {
             if($seat->shows->count()) {
-                session()->flash('message', __('Seat :seat has :num reservations',
+                $error = __('Seat :seat has :num reservations',
                     ['seat' => $seat->id, 'num' => $seat->shows->count()]
-                ));
-                return view('layouts.app');
+                );
+                return ['ok' => false, 'error' => $error];
             }
         }
+
         $section->seats()->delete();
-        session()->flash('message', __('Section seats deleted successfully!'));
-        return view('layouts.app');
+        return ['ok' => true];
     }
 }
