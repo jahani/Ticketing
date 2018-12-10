@@ -8,6 +8,19 @@
                 <div class="card-header">{{ __('Show Details') }}</div>
 
                 <div class="card-body">
+                    @can('update', $show)
+                        <a class="btn btn-sm btn-secondary" href="{{ route('shows.edit', $show) }}" role="button">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    @endcan
+                    @can('delete', $show)
+                        {!!Form::open()->delete()->route('shows.destroy', [$show])->attrs(['class'=>'inline-form'])!!}
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                        {!!Form::close()!!}
+                    @endcan
+
                     <h1>{{ $show->name }}</h1>
                     <div>Back to event <a href="{{ route('events.show', $show->event) }}">{{ $show->event->name }}</a></div>
 
@@ -47,9 +60,9 @@
                     @else
                         <div>{{ __('There is no section here!') }}</div>
                     @endif
-                    {{-- @can('update', $show) --}}
+                    @can('update', $show)
                         @include('shows.addSectionForm')
-                    {{-- @endcan --}}
+                    @endcan
                 </div>
             </div>
         </div>

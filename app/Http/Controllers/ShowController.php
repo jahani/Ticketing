@@ -8,6 +8,10 @@ use Carbon\Carbon;
 
 class ShowController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Show::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +47,7 @@ class ShowController extends Controller
         ]);
 
         $show = new Show();
+
         $show->fill($request->except('start', 'end'));
         $show->start = Carbon::parse($request->input('start'))->toDateTimeString();
         $show->end = Carbon::parse($request->input('end'))->toDateTimeString();
@@ -74,7 +79,7 @@ class ShowController extends Controller
      */
     public function edit(Show $show)
     {
-        //
+        return view('shows.create', compact('show'));
     }
 
     /**
@@ -86,7 +91,16 @@ class ShowController extends Controller
      */
     public function update(Request $request, Show $show)
     {
-        //
+        // TODO Validation
+
+        $show->fill($request->except('start', 'end'));
+        $show->start = Carbon::parse($request->input('start'))->toDateTimeString();
+        $show->end = Carbon::parse($request->input('end'))->toDateTimeString();
+        $show->save();
+
+        session()->flash('message', __('Show has been successfully updated.'));
+
+        return redirect()->back();
     }
 
     /**
@@ -97,6 +111,10 @@ class ShowController extends Controller
      */
     public function destroy(Show $show)
     {
-        //
+        $show->delete();
+        session()->flash('message', __('Show has been successfully deleted.'));
+        session()->flash('alert-class', 'alert-danger');
+
+        return redirect()->route('events.show', [$show->event]);
     }
 }

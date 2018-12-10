@@ -59,7 +59,10 @@
                         <div>{{ __('There is no show here!') }}</div>
                     @endif
                     @can('update', $event)
-                        <div>{!! sprintf(__('Why not <a href="%s">create a new show</a>?'), route('events.shows.create', $event)) !!}</div>
+                        <a href="{{ route('events.shows.create', $event) }}" role="button" class="btn btn-primary">
+                            <i class="fa fa-plus"></i>&nbsp;
+                            {{ __('Create a Show') }}
+                        </a>
                     @endcan
                 </div>
             </div>
