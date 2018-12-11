@@ -1,6 +1,3 @@
-@php
-    $cart = \App\Order::getCart();
-@endphp
 @if ($cart->count())
     <li class="nav-item">
         <a class="nav-link text-info" href="{{ route('orders.create') }}">

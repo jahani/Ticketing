@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
+use App\{Order};
 
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
         // Money Directive
         Blade::directive('price', function ($expression) {
             return "<?php echo (number_format($expression, 0, '.', ',') . ' IRT'); ?>";
+        });
+
+        // Cart View Composer
+        view()->composer('layouts.partials.navbarCartLink', function($view) {
+            $view->with('cart', Order::getCart());
         });
     }
 
