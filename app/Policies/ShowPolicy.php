@@ -19,11 +19,7 @@ class ShowPolicy
      */
     public function view(?User $user, Show $show)
     {
-        if (is_null($user)) {
-            if ($show->event->isPublished()) return true;
-            return false;
-        }
-        return $user->can('view', $show->event);
+        return ($user ?? new User)->can('view', $show->event);
     }
 
     /**
