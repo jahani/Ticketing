@@ -9,6 +9,7 @@
                 <th scope="col">Seat#</th>
                 <th scope="col">Show</th>
                 <th scope="col">Price</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,13 @@
                     <td>{{ $seatShow->seat->seat_number }}</td>
                     <td>{{ $seatShow->show->name }}</td>
                     <td>@price($seatShow->price)</td>
+                    <td>
+                        <a class="btn btn-sm btn-danger"
+                            href="{{ route('reserves.destroy', [$seatShow->show, $seatShow->seat]) }}"
+                            role="button">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
