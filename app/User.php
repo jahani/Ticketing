@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Laravel\Ban\Traits\Bannable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements BannableContract
 {
     use Notifiable;
+    use Bannable;
 
     /**
      * The attributes that are mass assignable.

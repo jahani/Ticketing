@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
+            // cybercog/laravel-ban
+            $table->timestamp('banned_at')->nullable();
         });
     }
 
