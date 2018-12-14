@@ -73,6 +73,10 @@ class Event extends Model
         return $this->status == PublishType::Published;
     }
     
+    public function scopeNotDraft($query)
+    {
+        return $query->where('status', '<>', PublishType::Draft);
+    }
     public function scopePublished($query)
     {
         return $query->where('status', PublishType::Published);
