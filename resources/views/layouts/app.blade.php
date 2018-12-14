@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('events.index') }}">{{ __('Events') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('shows.index') }}">{{ __('Shows') }}</a>
+                        </li>
                         @if (Auth::check() and Auth::user()->isAdmin())
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('places.index') }}">{{ __('Places') }}</a>

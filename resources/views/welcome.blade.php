@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="{{ route('events.index') }}">{{ __('Events') }}</a>
+                    <a href="{{ route('shows.index') }}">{{ __('Shows') }}</a>
                     <a href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
                 </div>
             </div>
