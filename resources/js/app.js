@@ -14,6 +14,10 @@ window.Vue = require('vue');
 window.VueVisible = require('vue-visible');
 Vue.use(VueVisible);
 
+// Comment this to not include it globally :
+// import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
+// Vue.component('date-picker', VuePersianDatetimePicker);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
