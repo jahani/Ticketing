@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="start" class="col-md-4 col-form-label text-md-right">{{ __('End') }}</label>
+                            <label for="end" class="col-md-4 col-form-label text-md-right">{{ __('End') }}</label>
 
                             <div class="col-md-6">
                                 <div class="input-group date" id="datetimepicker-end" class="datetimepicker" data-target-input="nearest">
