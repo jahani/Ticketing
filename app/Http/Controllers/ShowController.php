@@ -32,6 +32,7 @@ class ShowController extends Controller
         // It is supposed that event and show have different filter names
 
         $shows = new Show;
+        $shows = $shows->orderBy('start');
         $shows = $showFilter->apply($shows);
         
         $shows = $shows->whereHas('event', $filter = function ($query) use ($eventFilter) {

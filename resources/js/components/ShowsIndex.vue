@@ -78,6 +78,7 @@ import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 export default {
   props: {
       statustypes: '',
+      now: '',
   },
 
   data() {
@@ -97,7 +98,8 @@ export default {
   },
 
   created() {
-    this.fetchShows();
+    // this.fetchShows();
+    this.afterFilter = this.now;
   },
 
   methods: {
