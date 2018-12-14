@@ -28,6 +28,7 @@ Vue.use(VueVisible);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('places-index', require('./components/PlacesIndex.vue'));
+Vue.component('shows-index', require('./components/ShowsIndex.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))

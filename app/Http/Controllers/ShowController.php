@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\{Show, Event, Section};
+use App\Filters\{ShowFilter, EventFilter};
+use App\Enums\PublishType;
+use App\Http\Resources\ShowEventResource;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -19,7 +23,26 @@ class ShowController extends Controller
      */
     public function index()
     {
-        //
+        return view('shows.index')->with('status', PublishType::toSelectArray());
+    }
+
+    public function api(ShowFilter $showFilter, EventFilter $eventFilter)
+    {
+        // TODO :
+        // It is supposed that event and show have different filter names
+
+        $shows = new Show;
+        $shows = $showFilter->apply($shows);
+        
+        $shows = $shows->whereHas('event', $filter = function ($query) use ($eventFilter) {
+            $query = $query->notDraft(); // Security Concern
+            $query = $eventFilter->apply($query);
+        })->with(['event' => $filter]);
+        
+        $shows = $shows->paginate(config('app.show_items_per_page'));
+
+        $shows = ShowEventResource::collection($shows);
+        return $shows;
     }
 
     /**

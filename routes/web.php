@@ -37,11 +37,15 @@ Route::resources([
     'sections.seats' => 'SeatController',
 ]);
 
+
+Route::get('shows/api', 'ShowController@api')->name('shows.api');
+
 Route::resource('events.shows', 'ShowController')
-    ->only(['index', 'create', 'store']);
+    ->only(['create', 'store']);
 
 Route::resource('shows', 'ShowController')
-    ->only(['show', 'edit', 'update', 'destroy']);
+    ->only(['index', 'show', 'edit', 'update', 'destroy']);
+
 
 Route::group(['prefix' => 'reserves'], function() {
     Route::get('show/{show}/section/{section}', 'ReserveController@show')
