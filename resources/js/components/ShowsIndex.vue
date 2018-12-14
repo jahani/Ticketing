@@ -14,6 +14,7 @@
       <div class="col-auto">
         <date-picker
           v-model="afterFilter"
+          :max="beforeFilter"
           type="datetime"
           format="YYYY-MM-DD HH:mm:ss"
           display-format="jYYYY/jMM/jDD HH:mm, dddd"
@@ -33,6 +34,7 @@
       <div class="col-auto">
         <date-picker
           v-model="beforeFilter"
+          :min="afterFilter"
           type="datetime"
           format="YYYY-MM-DD HH:mm:ss"
           display-format="jYYYY/jMM/jDD HH:mm, dddd"
