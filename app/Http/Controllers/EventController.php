@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\{Event};
+use App\Filters\{EventFilter};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Logged user data
 use App\Http\Requests\EventRequest;
@@ -19,9 +20,12 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(EventFilter $filter)
     {
-        $events = Event::published()->paginate();
+        $events = Event::notDraft();
+        $events = $filter->apply($events);
+        $events = $events->paginate(); // TODO
+
         return view('events.index', compact('events'));
     }
 
