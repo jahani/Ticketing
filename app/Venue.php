@@ -12,4 +12,9 @@ class Venue extends Model
     {
         return $this->hasMany(Stage::class);
     }
+
+    public function sections()
+    {
+        return $this->hasManyThrough(Section::class, Stage::class);
+    }
 }
