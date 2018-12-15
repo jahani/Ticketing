@@ -21,8 +21,14 @@ class ReserveController extends Controller
 
     public function destroy(Show $show, Seat $seat)
     {
+        // TODO :
+        // This is much more eloquent :
+        // Just needed to check unreserve() conditions :
+        // $show->seats()->detach($seat);
+
         $show->seats()->wherePivot('seat_id', $seat->id)
             ->first()->reserves->unreserve();
+
         return back();
     }
 }
