@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94251785ae75d67f5daca5609cbcb203",
+    "content-hash": "bfbf188a67ae08f9ffbf67d8992438f6",
     "packages": [
+        {
+            "name": "barryvdh/laravel-translation-manager",
+            "version": "v0.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-translation-manager.git",
+                "reference": "7c42358804c44aca19c5de77080c42d841ed6856"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-translation-manager/zipball/7c42358804c44aca19c5de77080c42d841ed6856",
+                "reference": "7c42358804c44aca19c5de77080c42d841ed6856",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.5.x|5.6.x|5.7.x",
+                "illuminate/translation": "5.5.x|5.6.x|5.7.x",
+                "php": ">=7",
+                "symfony/finder": "~3.0|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Barryvdh\\TranslationManager\\ManagerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\TranslationManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Manage Laravel Translations",
+            "keywords": [
+                "laravel",
+                "translations",
+                "translator"
+            ],
+            "time": "2018-11-15T08:56:31+00:00"
+        },
         {
             "name": "bensampo/laravel-enum",
             "version": "1.16.1",
