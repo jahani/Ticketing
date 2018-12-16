@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
             'name' => env('SEEDER_USER_NAME', 'Admin'),
             'email' => env('SEEDER_USER_EMAIL', 'admin@example.com'),
             'password' => Hash::make((env('SEEDER_USER_PASSWORD', 'password'))),
+            'is_admin' => true,
         ]);
 
         factory(User::class, 4)->create();

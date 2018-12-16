@@ -32,6 +32,10 @@ class User extends Authenticatable implements BannableContract
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];
+
     /**
      * Relations
      */
@@ -52,8 +56,7 @@ class User extends Authenticatable implements BannableContract
 
     public function isAdmin()
     {
-        // TODO : use a better approach, maybe a field
-        return $this->id == 1;
+        return $this->is_admin;
     }
     
 }

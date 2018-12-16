@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             
             // cybercog/laravel-ban
             $table->timestamp('banned_at')->nullable();
+
+            // Admin role
+            $table->boolean('is_admin')->default(false);
         });
     }
 
