@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Money Directive
         Blade::directive('price', function ($expression) {
-            return "<?php echo (number_format($expression, 0, '.', ',') . ' IRT'); ?>";
+            return "<?php echo (number_format($expression, 0, '.', ',') . ' ' . __('IRT')); ?>";
         });
 
         // Cart View Composer
