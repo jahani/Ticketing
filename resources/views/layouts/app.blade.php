@@ -43,6 +43,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('places.index') }}">{{ __('Places') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('/translations') }}">{{ __('Translations') }}</a>
+                            </li>
                         @endif
                     </ul>
 
