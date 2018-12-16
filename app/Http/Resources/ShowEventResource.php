@@ -28,6 +28,9 @@ class ShowEventResource extends JsonResource
                 'status' => PublishType::getDescription($this->event->status),
                 'user_id' => $this->event->user_id,
             ],
+            'venues' => $this->sections->map(function($section) {
+                return $section->stage->venue;
+            })->unique(),
         ];
     }
 }

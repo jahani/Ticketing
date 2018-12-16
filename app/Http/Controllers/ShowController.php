@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Show, Event, Section};
+use App\{Show, Event, Section, Venue};
 use App\Filters\{ShowFilter, EventFilter};
 use App\Enums\PublishType;
 use App\Http\Resources\ShowEventResource;
@@ -23,7 +23,9 @@ class ShowController extends Controller
      */
     public function index()
     {
-        return view('shows.index')->with('status', PublishType::toSelectArray());
+        $statuses = PublishType::toSelectArray();
+        $venues = Venue::all();
+        return view('shows.index', compact('statuses', 'venues'));
     }
 
     public function api(ShowFilter $showFilter, EventFilter $eventFilter)
@@ -35,14 +37,30 @@ class ShowController extends Controller
         $shows = $shows->orderBy('start');
         $shows = $showFilter->apply($shows);
         
+        // Filter by event and load event info
         $shows = $shows->whereHas('event', $filter = function ($query) use ($eventFilter) {
-            $query = $query->notDraft(); // Security Concern
-            $query = $eventFilter->apply($query);
+            $query->notDraft(); // Security Concern
+            $eventFilter->apply($query);
         })->with(['event' => $filter]);
-        
+
+        // Filter by venue
+        if(request()->has('venue_id')) {
+            $shows = $shows->whereHas('sections', function ($query) {
+                // TODO : Refactor without get()ting it first
+                $iDs = Venue::findOrFail(request('venue_id'))->sections()->get();
+                $query->whereIn('id', $iDs);
+            });
+        }
+
+        // Load venue info
+        $shows = $shows->with('sections.stage.venue');
+
+        // Paginate
         $shows = $shows->paginate(config('app.show_items_per_page'));
 
+        // Format Output
         $shows = ShowEventResource::collection($shows);
+
         return $shows;
     }
 

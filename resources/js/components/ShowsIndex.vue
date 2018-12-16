@@ -48,7 +48,7 @@
       </div>
       <div class="col-auto">
         <select v-model="statusFilter" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-            <option value="" selected>Choose...</option>
+            <option value="" selected>Event Status</option>
             <option v-for="(value, key) in statustypes" :value="key" :key="key" v-if="value !== 'Draft'">
                 {{value}}
             </option>
@@ -62,10 +62,18 @@
             </option>
         </select>
       </div>
+      <div class="col-auto">
+        <select v-model="venue_idFilter" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option value="" selected>Venue</option>
+            <option v-for="{name, id} in venues" :value="id" :key="id">
+                {{name}}
+            </option>
+        </select>
+      </div>
     </div>
 
     <div class="row justify-content-center">
-      <div v-for="(show, index) in shows" :key="index" class="col-md-4 py-2">
+      <div v-for="show in shows" :key="show.id" class="col-md-4 py-2">
         <single-show :show="show"/>
       </div>
     </div>
@@ -78,6 +86,7 @@ import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 export default {
   props: {
       statustypes: '',
+      venues: Array,
       now: '',
   },
 
@@ -92,8 +101,9 @@ export default {
       afterFilter: "",
       beforeFilter: "",
       statusFilter: "",
+      venue_idFilter: "",
       
-      pageFilter: 1,
+      pageFilter: "",
     };
   },
 
@@ -131,6 +141,9 @@ export default {
     pageFilter: function(input) {
       this.fetchShows();
     },
+    venue_idFilter: function(input) {
+      this.fetchShows();
+    },
   },
 
   computed: {
@@ -156,6 +169,9 @@ export default {
       }
       if (this.hasFilter(this.pageFilter)) {
         filters.page = this.pageFilter;
+      }
+      if (this.hasFilter(this.venue_idFilter)) {
+        filters.venue_id = this.venue_idFilter;
       }
 
       return filters;

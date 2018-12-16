@@ -10,7 +10,12 @@
       <div>
         <small>{{ show.end | moment }}</small>
       </div>
-      <p class="card-text">{{ event.description }}</p>
+      <div class="card-text">
+        <p>{{ event.description }}</p>
+        <div v-for="venue in show.venues" :key="venue.id" class="venue">
+          <i class="fa fa-map-marker"></i> {{venue.name}}
+        </div>
+      </div>
       <a :href="'/shows/' + show.id" class="btn btn-primary">More Info</a>
     </div>
   </div>
