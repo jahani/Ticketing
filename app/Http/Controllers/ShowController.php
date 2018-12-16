@@ -47,7 +47,8 @@ class ShowController extends Controller
         if(request()->has('venue_id')) {
             $shows = $shows->whereHas('sections', function ($query) {
                 // TODO : Refactor without get()ting it first
-                $iDs = Venue::findOrFail(request('venue_id'))->sections()->get();
+                $iDs = Venue::findOrFail(request('venue_id'))->sections()->get()
+                    ->pluck('id')->all();
                 $query->whereIn('id', $iDs);
             });
         }
