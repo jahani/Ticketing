@@ -41,6 +41,13 @@ class Show extends Model
      * Helpers
      */
 
+    public function venues()
+    {
+        return $this->sections->map(function($section) {
+            return $section->stage->venue;
+        })->unique();
+    }
+
     public function sectionSeats(Section $section)
     {
         $sectionSeats = $section->seats;
