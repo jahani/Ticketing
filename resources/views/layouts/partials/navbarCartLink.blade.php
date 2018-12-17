@@ -3,7 +3,14 @@
         <a class="nav-link text-success" href="{{ route('orders.create') }}">
             {{ __('Cart') }}
             &nbsp;
-            ({{$cart->count()}} {{ str_plural(__('seat'), $cart->count()) }}
+            (
+                {{
+                    trans_choice(
+                        __(':num seat|:num seats'),
+                        $cart->count(),
+                        ['num' => $cart->count()]
+                    )
+                }}
             &nbsp;/&nbsp;
             @price($cart->sum('price')))
         </a>
