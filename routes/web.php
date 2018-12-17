@@ -71,3 +71,8 @@ Route::group(['prefix' => 'seatfactory/{section}'], function() {
 
 
 Route::get('places', 'PlaceController@index')->name('places.index');
+
+
+// Users
+Route::resource('users', 'UserController')
+    ->only(['show', 'edit', 'update']);
