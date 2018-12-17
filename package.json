@@ -22,6 +22,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "bootstrap-v4-rtl": "^4.1.1-1",
         "font-awesome": "^4.7.0",
         "jquery-countdown": "^2.2.0",
         "moment-jalaali": "^0.8.3",
