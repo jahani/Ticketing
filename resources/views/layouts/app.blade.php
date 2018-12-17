@@ -21,7 +21,7 @@
 </head>
 <body class="{{ __('global.page_direction') }}">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -44,7 +44,7 @@
                                 <a class="nav-link" href="{{ route('places.index') }}">{{ __('Places') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('/translations') }}">{{ __('Translations') }}</a>
+                                <a class="nav-link" href="{{ url('/translations') }}">{{ __('Translations') }}</a>
                             </li>
                         @endif
                     </ul>

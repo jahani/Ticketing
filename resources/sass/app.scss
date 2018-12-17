@@ -3,11 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+// @import 'variables';
+@import '~bootswatch/dist/darkly/variables'; // Color Theme
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-v4-rtl/scss/bootstrap-rtl';
+@import '~bootswatch/dist/darkly/bootswatch'; // Color Theme
 
 
 // Date Time Picker
