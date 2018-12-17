@@ -38,6 +38,9 @@ class Kernel extends HttpKernel
             
             // Logout banned users
             \App\Http\Middleware\LogsOutBannedUser::class,
+            
+            // Localization
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
