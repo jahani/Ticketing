@@ -26,7 +26,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Ticketing'),
+    'domain' => env('APP_DOMAIN', 'ticketing.test'),
 
     /*
     |--------------------------------------------------------------------------
