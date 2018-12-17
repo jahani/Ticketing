@@ -18,6 +18,10 @@
 
 // NProgress
 @import "~nprogress/nprogress.css";
+#nprogress .bar {
+  background: #00bc8c;
+}
+
 
 .navbar-laravel {
   background-color: #fff;
