@@ -13,11 +13,16 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
+    @if (App::isLocale('en'))
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    @endif
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if (App::isLocale('fa'))
+    <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body class="{{ __('global.page_direction') }}">
     <div id="app">
