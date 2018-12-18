@@ -7,7 +7,9 @@
         <title>{{ __('messages.app_name') }}</title>
 
         <!-- Fonts -->
+        @if (App::isLocale('en'))
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        @endif
 
         <!-- Styles -->
         <style>
@@ -62,6 +64,10 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        @if (App::isLocale('fa'))
+        <link href="{{ asset('css/rtl.css') }}" rel="stylesheet">
+        @endif
     </head>
     <body class="{{ __('global.page_direction') }}">
         <div class="flex-center position-ref full-height">
