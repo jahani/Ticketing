@@ -13,16 +13,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <h1>Section: {{ $section->name }}</h1>
-                    <h1>Show: {{ $show->name }}</h1>
-                    <h1>Price: @price($show->sectionPrice($section))</h1>
+                    <h1>{{__('Section')}}: {{ $section->name }}</h1>
+                    <h1>{{__('Show')}}: {{ $show->name }}</h1>
+                    <h1>{{__('Price')}}: @price($show->sectionPrice($section))</h1>
                     <h4>
                         {{ __('Belongs to ') }}
                         {{ $section->stage->name }}{{ __(', ') }}
                         {{ $section->stage->venue->name }}
                     </h4>
 
-                    <p>Please chooose your seats.</p>
+                    <p>{{__('Please chooose your seats.')}}</p>
 
                     @include('sections.seats')
 

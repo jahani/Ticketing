@@ -9,12 +9,12 @@
 
                 <div class="card-body">
                     <div class="pb-2">
-                        <h1>Track an Order</h1>
+                        <h1>{{__('Track an Order')}}</h1>
                         @include('orders.partials.track')
                     </div>
                     
                     @auth
-                        <h1>Your Orders</h1>
+                        <h1>{{__('Your Orders')}}</h1>
                         @include('orders.partials.list')
                     @endauth
                 </div>

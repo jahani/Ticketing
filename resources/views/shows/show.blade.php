@@ -22,20 +22,20 @@
                     @endcan
 
                     <h1>{{ $show->name }}</h1>
-                    <div>Back to event <a href="{{ route('events.show', $show->event) }}">{{ $show->event->name }}</a></div>
+                    <div>{{__('Back to event')}} <a href="{{ route('events.show', $show->event) }}">{{ $show->event->name }}</a></div>
 
                     <br>
-                    <h2>Sections</h2>
+                    <h2>{{__('Sections')}}</h2>
                     @if ($show->sections->count())
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Stage</th>
-                                    <th scope="col">Venue</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">{{__('Name')}}</th>
+                                    <th scope="col">{{__('Stage')}}</th>
+                                    <th scope="col">{{__('Venue')}}</th>
+                                    <th scope="col">{{__('Price')}}</th>
+                                    <th scope="col">{{__('Actions')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,7 +50,7 @@
                                     <a class="btn btn-primary btn-sm" role="button"
                                         href="{{ route('reserves.show', [$show, $section]) }}">
                                         <i class="fa fa-calendar-plus-o"></i>&nbsp;
-                                        Reserve
+                                        {{__('Reserve')}}
                                     </a>
                                 </td>
                             </tr>

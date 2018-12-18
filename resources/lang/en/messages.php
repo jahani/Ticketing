@@ -11,6 +11,6 @@ return [
     |
     */
 
-    
+    'app_name' => 'Ticketing',
 
 ];

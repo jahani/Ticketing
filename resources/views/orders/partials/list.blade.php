@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Status</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Commands</th>
+                <th scope="col">{{__('Status')}}</th>
+                <th scope="col">{{__('Total Price')}}</th>
+                <th scope="col">{{__('Commands')}}</th>
             </tr>
         </thead>
         <tbody>

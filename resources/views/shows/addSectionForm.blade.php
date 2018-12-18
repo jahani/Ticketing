@@ -8,7 +8,7 @@
 @endphp
 
 {!!Form::open()->post()->route('sectionshows.shows.store', ['show' => $show])!!}
-{!!Form::select('section', 'Choose a Section', $sectionSelections)!!}
-{!!Form::text('price', 'Section Price')->type('number')!!}
+{!!Form::select('section', __('Choose a Section'), $sectionSelections)!!}
+{!!Form::text('price', __('Section Price'))->type('number')!!}
 {!!Form::submit(__('Submit'))!!}
 {!!Form::close()!!}

@@ -3,13 +3,13 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Stage</th>
-                <th scope="col">Section</th>
-                <th scope="col">Row#</th>
-                <th scope="col">Seat#</th>
-                <th scope="col">Show</th>
-                <th scope="col">Price</th>
-                <th scope="col">Actions</th>
+                <th scope="col">{{__('Stage')}}</th>
+                <th scope="col">{{__('Section')}}</th>
+                <th scope="col">{{__('Row')}}#</th>
+                <th scope="col">{{__('Seat')}}#</th>
+                <th scope="col">{{__('Show')}}</th>
+                <th scope="col">{{__('Price')}}</th>
+                <th scope="col">{{__('Actions')}}</th>
             </tr>
         </thead>
         <tbody>

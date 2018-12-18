@@ -24,10 +24,10 @@
                     @else
                         {!!Form::open()->post()->route('events.store')->multipart()!!}
                     @endif
-                    {!!Form::text('name', 'Name')!!}
-                    {!!Form::textarea('description', 'Description')!!}
-                    {!!Form::file('image', 'Image')!!}
-                    {!!Form::select('status', 'Status', App\Enums\PublishType::toSelectArray())!!}
+                    {!!Form::text('name', __('Name'))!!}
+                    {!!Form::textarea('description', __('Description'))!!}
+                    {!!Form::file('image', __('Image'))!!}
+                    {!!Form::select('status', __('Status'), App\Enums\PublishType::toSelectArray())!!}
                     {!!Form::submit(__('Submit'))!!}
                     {!!Form::close()!!}
 

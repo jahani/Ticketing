@@ -13,10 +13,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">User</th>
-                                    <th scope="col">Actions</th>
+                                    <th scope="col">{{__('Name')}}</th>
+                                    <th scope="col">{{__('Status')}}</th>
+                                    <th scope="col">{{__('User')}}</th>
+                                    <th scope="col">{{__('Actions')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
