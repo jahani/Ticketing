@@ -30,7 +30,7 @@
     <ul class="list-unstyled text-small">
         @foreach (config('app.languages') as $languageCode => $languageName)
             <li>
-                <a class="text-muted" href="
+                <a class="{{ App::isLocale($languageCode) ?: 'text-muted' }}" href="
                 {{
                     '//'.$languageCode.'.'. config('app.domain')
                     .'/'. request()->path()
