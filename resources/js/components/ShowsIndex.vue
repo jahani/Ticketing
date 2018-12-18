@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>Shows</h1>
     <div class="row">
         <div class="col-auto">
         <div class="form-group form-check">
