@@ -3,14 +3,14 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{__('Stage')}}</th>
-                <th scope="col">{{__('Section')}}</th>
-                <th scope="col">{{__('Row')}}#</th>
-                <th scope="col">{{__('Seat')}}#</th>
-                <th scope="col">{{__('Show')}}</th>
-                <th scope="col">{{__('Price')}}</th>
+                <th scope="col">@lang('Stage')</th>
+                <th scope="col">@lang('Section')</th>
+                <th scope="col">@lang('Row')}</th>
+                <th scope="col">@lang('Seat')}</th>
+                <th scope="col">@lang('Show')</th>
+                <th scope="col">@lang('Price')</th>
                 @if($showActions ?? false)
-                <th scope="col">{{__('Actions')}}</th>
+                <th scope="col">@lang('Actions')</th>
                 @endif
             </tr>
         </thead>
@@ -39,11 +39,11 @@
         <tfoot>
             <tr>
                 <td colspan="3">
-                    {{ __('Sum: ') }} @price($seatShows->sum('price'))
+                    @lang('Sum: ') @price($seatShows->sum('price'))
                 </td>
             </tr>
         </tfoot>
     </table>
 @else
-    <div>{{ __('There is no reservations here!') }}</div>
+    <div>@lang('There is no reservations here!')</div>
 @endif

@@ -20,7 +20,7 @@ $seats = $show->sectionSeats($section);
     @endforeach
 </div> --}}
 
-<h1 style="text-align:center;">{{__('Scene')}}</h1>
+<h1 style="text-align:center;">@lang('Scene')</h1>
 <div class="seats">
     @for ($i = 1; $i <= $seat_cols; $i++)
         <div class="cols" style="grid-row: 1; grid-column: {{$i+1}};">-</div>
@@ -49,7 +49,7 @@ $seats = $show->sectionSeats($section);
             id="seat-{{ $seat->id }}"
             @if (!empty($href)) href="{{ $href }}" @endif
             data-toggle="tooltip" data-placement="top" data-html="true"
-            title="{{__('Row')}}: {{ $seat->row_number }}<br>{{__('Seat')}}: {{ $seat->seat_number }}">
+            title="@lang('Row'): {{ $seat->row_number }}<br>@lang('Seat'): {{ $seat->seat_number }}">
             {{ $seat->seat_number }}
         </a>
     @endforeach

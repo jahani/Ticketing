@@ -24,7 +24,7 @@
                     @endcan
 
                     <h1>{{ $event->name }}</h1>
-                    <div>{{__('Status')}}: {{ $event->statusName }}</div>
+                    <div>@lang('Status'): {{ $event->statusName }}</div>
                     <div>{!! nl2br(e($event->description)) !!}</div>
 
                     <h2>Shows</h2>
@@ -33,9 +33,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">{{__('Name')}}</th>
-                                    <th scope="col">{{__('Start')}}</th>
-                                    <th scope="col">{{__('End')}}</th>
+                                    <th scope="col">@lang('Name')</th>
+                                    <th scope="col">@lang('Start')</th>
+                                    <th scope="col">@lang('End')</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,12 +56,12 @@
                             </tbody>
                         </table>
                     @else
-                        <div>{{ __('There is no show here!') }}</div>
+                        <div>@lang('There is no show here!')</div>
                     @endif
                     @can('update', $event)
                         <a href="{{ route('events.shows.create', $event) }}" role="button" class="btn btn-primary">
                             <i class="fa fa-plus"></i>&nbsp;
-                            {{ __('Create a Show') }}
+                            @lang('Create a Show')
                         </a>
                     @endcan
                 </div>

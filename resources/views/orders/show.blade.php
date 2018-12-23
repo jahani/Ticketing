@@ -9,15 +9,15 @@
 
                 <div class="card-body">
                     <h1>
-                        {{ __('Order #:order', ['order'=> $order->id]) }}
+                        @lang('Order #:order', ['order'=> $order->id])
                     </h1>
                     <div>
-                        <strong>{{ __('Order Status') }}: </strong>
+                        <strong>@lang('Order Status'): </strong>
                         {{ app('App\Enums\OrderType')::getDescription($order->status) }}
                     </div>
                     @isset($order->tracking_code)
                         <div>
-                            <strong>{{ __('Tracking Code') }}: </strong>
+                            <strong>@lang('Tracking Code'): </strong>
                             {{ $order->tracking_code }}
                         </div>
                     @endisset

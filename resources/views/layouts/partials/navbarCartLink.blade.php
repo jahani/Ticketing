@@ -1,7 +1,7 @@
 @if ($cart->count())
     <li class="nav-item">
         <a class="nav-link" href="{{ route('orders.create') }}">
-            {{ __('Cart') }}
+            @lang('Cart')
             &nbsp;
             (
                 {{

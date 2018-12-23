@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>{{__('Shows')}}</h1>
+    <h1>@lang('Shows')</h1>
     <shows-index
         :statustypes="{{ json_encode($statuses) }}"
         :venues="{{ $venues }}"

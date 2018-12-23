@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     @if(isset($event))
-                        {{ __('Edit event #:event', ['event' => $event->id]) }}
+                        @lang('Edit event #:event', ['event' => $event->id])
                     @else
-                        {{ __('Create an event') }}
+                        @lang('Create an event')
                     @endif
                 </div>
 

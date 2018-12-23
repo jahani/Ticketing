@@ -90,7 +90,16 @@
     "You are logged in!": "شما وارد شده‌اید!",
     "click here to request another": "برای درخواست یکی دیگر اینجا را کلیک کنید",
     "Actions": "اقدامات",
+    "A fresh verification link has been sent to your email address.": "یک لینک تایید جدید برای ایمیل شما ارسال شده است.",
+    "Before proceeding, please check your email for a verification link.": "پیش از ادامه، لطفا ایمیل خود را برای لینک تایید بررسی کنید.",
+    "Toggle navigation": "تغییر ناوبری",
+    "Belongs to ": "متعلق است به",
     "Stage": "سالن",
     "Reserve": "رزرو",
-    "Back to event": "بازگشت به رویداد"
+    "Back to event": "بازگشت به رویداد",
+    "Belongs to :stage, :venue": "متعلق است به :stage، :venue",
+    "Available": "در دسترس",
+    "Reserved for You": "رزرو شده برای شما",
+    "Reserved": "رزرو شده",
+    "Booked": "خریداری شده"
 }

@@ -13,10 +13,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">{{__('Name')}}</th>
-                                    <th scope="col">{{__('Status')}}</th>
-                                    <th scope="col">{{__('User')}}</th>
-                                    <th scope="col">{{__('Actions')}}</th>
+                                    <th scope="col">@lang('Name')</th>
+                                    <th scope="col">@lang('Status')</th>
+                                    <th scope="col">@lang('User')</th>
+                                    <th scope="col">@lang('Actions')</th>
                                 </tr>
                             </thead>
                             <tbody>

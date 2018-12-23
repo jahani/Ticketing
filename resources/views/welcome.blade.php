@@ -74,12 +74,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">{{ __('Home') }}</a>
+                        <a href="{{ url('/home') }}">@lang('Home')</a>
                     @else
-                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a href="{{ route('login') }}">@lang('Login')</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a href="{{ route('register') }}">@lang('Register')</a>
                         @endif
                     @endauth
                 </div>
@@ -87,13 +87,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{ __('messages.app_name') }}
+                    @lang('messages.app_name')
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('events.index') }}">{{ __('Events') }}</a>
-                    <a href="{{ route('shows.index') }}">{{ __('Shows') }}</a>
-                    <a href="{{ route('orders.index') }}">{{ __('Orders') }}</a>
+                    <a href="{{ route('events.index') }}">@lang('Events')</a>
+                    <a href="{{ route('shows.index') }}">@lang('Shows')</a>
+                    <a href="{{ route('orders.index') }}">@lang('Orders')</a>
                 </div>
             </div>
         </div>

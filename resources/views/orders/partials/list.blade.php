@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">{{__('Status')}}</th>
-                <th scope="col">{{__('Total Price')}}</th>
-                <th scope="col">{{__('Commands')}}</th>
+                <th scope="col">@lang('Status')</th>
+                <th scope="col">@lang('Total Price')</th>
+                <th scope="col">@lang('Commands')</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +16,7 @@
             <td>@price($order->getTotalPrice())</td>
             <td>
                 <a class="btn btn-primary" role="button" href="{{ route('orders.show', [$order]) }}">
-                    {{ __('Show') }}
+                    @lang('Show')
                 </a>
             </td>
         </tr>
@@ -24,5 +24,5 @@
         </tbody>
     </table>
 @else
-    <div>{{ __('There is no order here!') }}</div>
+    <div>@lang('There is no order here!')</div>
 @endif

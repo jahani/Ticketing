@@ -26,7 +26,7 @@
     </ul>
     </div>
     <div class="col-4 col-md">
-    <h5><i class="fa fa-globe"></i>&nbsp;{{__('Languages')}}</h5>
+    <h5><i class="fa fa-globe"></i>&nbsp;@lang('Languages')</h5>
     <ul class="list-unstyled text-small">
         @foreach (config('app.languages') as $languageCode => $languageName)
             <li>

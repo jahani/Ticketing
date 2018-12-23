@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     @if(isset($show))
-                        {{ __('Edit show #:show', ['show' => $show->id]) }}
+                        @lang('Edit show #:show', ['show' => $show->id])
                     @else
-                        {{ __('Create a show') }}
+                        @lang('Create a show')
                     @endif
                 </div>
 
@@ -80,7 +80,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Submit') }}
+                                    @lang('Submit')
                                 </button>
                             </div>
                         </div>
