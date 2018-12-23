@@ -1,6 +1,6 @@
 @if ($cart->count())
     <li class="nav-item">
-        <a class="nav-link text-success" href="{{ route('orders.create') }}">
+        <a class="nav-link" href="{{ route('orders.create') }}">
             {{ __('Cart') }}
             &nbsp;
             (
