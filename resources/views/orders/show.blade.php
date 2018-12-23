@@ -18,7 +18,7 @@
                     @isset($order->tracking_code)
                         <div>
                             <strong>@lang('Tracking Code'): </strong>
-                            {{ $order->tracking_code }}
+                            <kbd>{{ $order->tracking_code }}</kbd>
                         </div>
                     @endisset
 
