@@ -9,7 +9,9 @@
                 <th scope="col">{{__('Seat')}}#</th>
                 <th scope="col">{{__('Show')}}</th>
                 <th scope="col">{{__('Price')}}</th>
+                @if($showActions ?? false)
                 <th scope="col">{{__('Actions')}}</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -22,6 +24,7 @@
                     <td>{{ $seatShow->seat->seat_number }}</td>
                     <td>{{ $seatShow->show->name }}</td>
                     <td>@price($seatShow->price)</td>
+                    @if($showActions ?? false)
                     <td>
                         <a class="btn btn-sm btn-danger"
                             href="{{ route('reserves.destroy', [$seatShow->show, $seatShow->seat]) }}"
@@ -29,6 +32,7 @@
                             <i class="fa fa-trash"></i>
                         </a>
                     </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

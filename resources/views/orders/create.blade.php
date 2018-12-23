@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Current Reservations') }}</div>
 
                 <div class="card-body">
-                    @include('seatShows.partials.list')
+                    @include('seatShows.partials.list', ['showActions' => true])
 
                     {!!Form::open()->post()->route('orders.store')!!}
                     {!!Form::submit(__('Checkout'))!!}
