@@ -5,8 +5,8 @@
                 <th scope="col">#</th>
                 <th scope="col">@lang('Stage')</th>
                 <th scope="col">@lang('Section')</th>
-                <th scope="col">@lang('Row')}</th>
-                <th scope="col">@lang('Seat')}</th>
+                <th scope="col">@lang('Row')</th>
+                <th scope="col">@lang('Seat')</th>
                 <th scope="col">@lang('Show')</th>
                 <th scope="col">@lang('Price')</th>
                 @if($showActions ?? false)
