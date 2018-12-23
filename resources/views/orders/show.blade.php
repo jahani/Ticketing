@@ -31,7 +31,9 @@
                             ])->attrs(['class'=>'inline-form'])!!}
                         {!!Form::submit(__('Pay'))!!}
                         {!!Form::close()!!}
-                        {!!Form::open()->delete()->route('orders.destroy', [$order])->attrs(['class'=>'inline-form'])!!}
+                        {!!Form::open()->delete()->route('orders.destroy', [
+                            'order' => $order, 'tracking_code'=> request()->input('tracking_code')
+                            ])->attrs(['class'=>'inline-form'])!!}
                         {!!Form::submit(__('Cancel'))->color('danger')!!}
                         {!!Form::close()!!}
                     @endif
