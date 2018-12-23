@@ -102,7 +102,9 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        // TODO : payment process
+        $order->finalize();
+        return back();
     }
 
     /**

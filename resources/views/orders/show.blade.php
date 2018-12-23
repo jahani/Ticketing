@@ -26,7 +26,7 @@
 
                     @if ($order->status == app('App\Enums\OrderType')::Waiting)
                         <div class="lead py-2" data-countdown-for="{{ $order->secondsUntilExpire() }}"></div>
-                        {!!Form::open()->post()->route('orders.show', [$order])->attrs(['class'=>'inline-form'])!!}
+                        {!!Form::open()->put()->route('orders.update', [$order])->attrs(['class'=>'inline-form'])!!}
                         {!!Form::submit(__('Pay'))!!}
                         {!!Form::close()!!}
                         {!!Form::open()->delete()->route('orders.destroy', [$order])->attrs(['class'=>'inline-form'])!!}

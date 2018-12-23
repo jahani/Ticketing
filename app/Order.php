@@ -50,6 +50,29 @@ class Order extends Model
         return true;
     }
 
+    public function finalize()
+    {
+        if ($this->status != OrderType::Waiting) {
+            // return false;
+        }
+
+        DB::beginTransaction();
+        try {
+            $seatShows = $this->seatShows;
+            foreach ($seatShows as $seatShow) {
+                $seatShow->bookToOrder($this);
+            }
+            $this->status = OrderType::Finalized;
+            $this->save();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+        DB::commit();
+
+        return true;
+    }
+
     /**
      * Helpers
      */

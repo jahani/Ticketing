@@ -112,7 +112,19 @@ class SeatShow extends Pivot
         return true;
     }
 
-    public function book()
+    public function bookToOrder(Order $order)
+    {
+        if (!$this->isBookable()) {
+            throw new Exception("book is not bookable", 1);
+        }
+
+        return $this->show->seats()
+            ->updateExistingPivot($this->seat->id, [
+                'status' => SeatBookType::Booked
+            ]);
+    }
+    
+    public function isBookable()
     {
         // TODO : if bookable
         return true;
