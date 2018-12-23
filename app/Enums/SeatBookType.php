@@ -7,7 +7,7 @@ use BenSampo\Enum\Contracts\LocalizedEnum;
 
 final class SeatBookType extends Enum implements LocalizedEnum
 {
-    const Held = 0;
-    const Reserved = 1;
-    const Booked = 2;
+    const Held = 1;
+    const Reserved = 3;
+    const Booked = 5;
 }
