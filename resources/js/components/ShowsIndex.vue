@@ -11,7 +11,7 @@
         <label for="start" class="col-form-label text-md-right">Start after:</label>
       </div>
 
-      <div class="col-auto">
+      <div class="col-auto rtl">
         <date-picker
           v-model="afterFilter"
           :max="beforeFilter"
@@ -31,7 +31,7 @@
         <label for="start" class="col-form-label text-md-right">Finish before:</label>
       </div>
 
-      <div class="col-auto">
+      <div class="col-auto rtl">
         <date-picker
           v-model="beforeFilter"
           :min="afterFilter"

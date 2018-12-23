@@ -4,12 +4,12 @@
 
 // Variables
 // @import 'variables';
-@import '~bootswatch/dist/darkly/variables'; // Color Theme
+@import '~bootswatch/dist/united/variables'; // Color Theme
 
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-v4-rtl/scss/bootstrap-rtl';
-@import '~bootswatch/dist/darkly/bootswatch'; // Color Theme
+@import '~bootswatch/dist/united/bootswatch'; // Color Theme
 
 
 // Date Time Picker
@@ -26,6 +26,14 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+// General
+.rtl {
+  direction: rtl;
+}
+.ltr {
+  direction: ltr;
 }
 
 // Section
