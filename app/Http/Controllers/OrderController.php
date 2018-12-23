@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Order::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +70,10 @@ class OrderController extends Controller
     {
         $order = Order::create();
 
-        return redirect()->route('orders.show', $order);
+        return redirect()->route('orders.show', [
+            'order' => $order,
+            'tracking_code' => $order->tracking_code
+        ]);
     }
 
     /**
