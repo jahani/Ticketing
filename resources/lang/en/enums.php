@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\PublishType;
+use App\Enums\{PublishType, OrderType};
 
 return [
 
@@ -9,6 +9,13 @@ return [
         PublishType::Unavailable => 'unavailable',
         PublishType::ComingSoon => 'coming soon',
         PublishType::Published => 'published',
+    ],
+    
+    OrderType::class => [
+        OrderType::Default => 'default',
+        OrderType::Waiting => 'waiting',
+        OrderType::Cancelled => 'cancelled',
+        OrderType::Finalized => 'finalized',
     ],
 
 ];

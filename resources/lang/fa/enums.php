@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\PublishType;
+use App\Enums\{PublishType, OrderType};
 
 return [
 
@@ -9,6 +9,13 @@ return [
         PublishType::Unavailable => 'خارج از دسترس',
         PublishType::ComingSoon => 'به زودی',
         PublishType::Published => 'منتشر شده',
+    ],
+
+    OrderType::class => [
+        OrderType::Default => 'پیش‌فرض',
+        OrderType::Waiting => 'در انتظار',
+        OrderType::Cancelled => 'لغو شده',
+        OrderType::Finalized => 'نهایی',
     ],
 
 ];
