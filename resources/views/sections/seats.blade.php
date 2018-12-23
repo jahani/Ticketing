@@ -54,3 +54,18 @@ $seats = $show->sectionSeats($section);
         </a>
     @endforeach
 </div>
+<br>
+<div class="seats-guid">
+    <button class="seat btn btn-secondary">
+        @lang('Available')
+    </button>
+    <button class="seat btn btn-primary">
+        @lang('Reserved for You')
+    </button>
+    <button class="seat btn btn-warning">
+        @lang('Reserved')
+    </button>
+    <button class="seat btn btn-danger">
+        @lang('Booked')
+    </button>
+</div>
