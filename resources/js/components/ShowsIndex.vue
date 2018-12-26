@@ -49,7 +49,7 @@
       <div class="col-auto">
         <select v-model="statusFilter" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
             <option value="" selected>Event Status</option>
-            <option v-for="(value, key) in statustypes" :value="key" :key="key" v-if="value !== 'Draft'">
+            <option v-for="(value, key) in statustypes" :value="key" :key="key" v-if="key != statusTypesDraftCode">
                 {{value}}
             </option>
         </select>
@@ -86,6 +86,7 @@ import VuePersianDatetimePicker from 'vue-persian-datetime-picker';
 export default {
   props: {
       statustypes: '',
+      statusTypesDraftCode: Number,
       venues: Array,
       now: '',
   },
