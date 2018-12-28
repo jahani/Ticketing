@@ -52,16 +52,15 @@
 
 # Notepad
 
-## Event Site Example:
+### Similar Sites:
 * https://www.eventbrite.com/create/seat-map?eid=52637682726&seatmap_eid=None
+* https://www.exirconcert.com
 
 ### TODOs:
-1. Need ajax and level by level load: http://localhost:8000/shows/4 ; Group Sections
-2. When a user login or register, Submit all session reserves for him
-3. Search: define model policy based on parnent model
-4. What if seat is in unpayed orders and user decide to unreserve it, Bug in UI or anything else?
-5. Ask for user data when creating orders; Autofill them by current logged user if any
-6. Order Policy, tracking_code should be checked if user has not access to order directly
+- Need ajax and level by level load: http://localhost:8000/shows/4 ; Group Sections
+- When a user login or register, Submit all session reserves for him
+- What if seat is in unpayed orders and user decide to unreserve it, Bug in UI or anything else?
+- Ask for user data when creating orders; Autofill them by current logged user if any
 
 ### You May Need to Use:
 - https://github.com/spatie/laravel-permission
