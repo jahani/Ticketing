@@ -1,5 +1,5 @@
 # Screenshots
-![screenshots](https://raw.github.com/Jahani/Ticketing/master/screenshots.gif)
+![screenshots](https://raw.github.com/Jahani/Ticketing/master/screenshots/screenshots.gif)
 
 # Project Features
 
