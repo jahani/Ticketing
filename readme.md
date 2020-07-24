@@ -1,4 +1,5 @@
 # Screenshots
+[High-resolution Screenshots](https://github.com/Jahani/Ticketing/screenshots)
 ![screenshots](https://raw.github.com/Jahani/Ticketing/master/screenshots/screenshots.gif)
 
 # Project Features
