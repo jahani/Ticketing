@@ -1,3 +1,6 @@
+# Screenshots
+![screenshots](https://raw.github.com/Jahani/Ticketing/master/screenshots.gif)
+
 # Project Features
 
 ## App Specific
