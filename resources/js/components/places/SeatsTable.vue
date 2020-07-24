@@ -18,7 +18,7 @@
       v-for="(seat, index) in seats"
       :id="'seat-' + seat.id"
       :key="index"
-      :style="{ 'grid-row': seat.row_number+1, 'grid-column': seat.seat_number+1 }"
+      :style="{ 'grid-row': Number(seat.row_number)+1, 'grid-column': Number(seat.seat_number)+1 }"
       v-on:click.prevent
       role="button" class="seat btn btn-secondary"
       href="#"
