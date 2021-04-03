@@ -1,3 +1,6 @@
+# Entity Relationship Diagram (ERD)
+![screenshot](https://raw.github.com/Jahani/Ticketing/master/screenshots/ERD.jpg)
+
 # Screenshots
 
 ## Shows
